@@ -1,3 +1,7 @@
+<?php
+
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +16,6 @@
     <link rel="stylesheet" href="assets/css/lineicons.css" />
     <link rel="stylesheet" href="assets/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
-    <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 
@@ -22,7 +25,10 @@
 
     <main class="main-wrapper">
         <?php include_once('layout/navbar.php'); ?>
-        <?php include_once('halaman/dashboard/dashboard.php'); ?>
+        <?php
+        if (isset($_GET['halaman'])) {
+        } else include_once('halaman/dashboard/dashboard.php');
+        ?>
     </main>
 </body>
 
