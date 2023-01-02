@@ -37,7 +37,7 @@ session_start();
         <?php
         if (isset($_GET['page'])) {
             if ($_GET['page'] == 'master_data') {
-                if ($_GET['sub_page'] == 'golongan_darah') {
+                if (($_GET['sub_page'] ?? '') == 'golongan_darah') {
                     if ($_GET['action'] == 'tampil')
                         include_once('halaman/golongan_darah/tampil.php');
                     elseif ($_GET['action'] == 'tambah')
@@ -46,7 +46,7 @@ session_start();
                         include_once('halaman/golongan_darah/ubah.php');
                     elseif ($_GET['action'] == 'hapus')
                         include_once('halaman/golongan_darah/hapus.php');
-                } elseif ($_GET['sub_page'] == 'status_keluarga') {
+                } elseif (($_GET['sub_page'] ?? '') == 'status_keluarga') {
                     if ($_GET['action'] == 'tampil')
                         include_once('halaman/status_keluarga/tampil.php');
                     elseif ($_GET['action'] == 'tambah')
@@ -55,7 +55,7 @@ session_start();
                         include_once('halaman/status_keluarga/ubah.php');
                     elseif ($_GET['action'] == 'hapus')
                         include_once('halaman/status_keluarga/hapus.php');
-                } elseif ($_GET['sub_page'] == 'pendidikan') {
+                } elseif (($_GET['sub_page'] ?? '') == 'pendidikan') {
                     if ($_GET['action'] == 'tampil')
                         include_once('halaman/pendidikan/tampil.php');
                     elseif ($_GET['action'] == 'tambah')
@@ -64,7 +64,7 @@ session_start();
                         include_once('halaman/pendidikan/ubah.php');
                     elseif ($_GET['action'] == 'hapus')
                         include_once('halaman/pendidikan/hapus.php');
-                } elseif ($_GET['sub_page'] == 'agama') {
+                } elseif (($_GET['sub_page'] ?? '') == 'agama') {
                     if ($_GET['action'] == 'tampil')
                         include_once('halaman/agama/tampil.php');
                     elseif ($_GET['action'] == 'tambah')
@@ -73,7 +73,7 @@ session_start();
                         include_once('halaman/agama/ubah.php');
                     elseif ($_GET['action'] == 'hapus')
                         include_once('halaman/agama/hapus.php');
-                } elseif ($_GET['sub_page'] == 'penyebab_kematian') {
+                } elseif (($_GET['sub_page'] ?? '') == 'penyebab_kematian') {
                     if ($_GET['action'] == 'tampil')
                         include_once('halaman/penyebab_kematian/tampil.php');
                     elseif ($_GET['action'] == 'tambah')
@@ -82,7 +82,7 @@ session_start();
                         include_once('halaman/penyebab_kematian/ubah.php');
                     elseif ($_GET['action'] == 'hapus')
                         include_once('halaman/penyebab_kematian/hapus.php');
-                } elseif ($_GET['sub_page'] == 'jenis_pekerjaan') {
+                } elseif (($_GET['sub_page'] ?? '') == 'jenis_pekerjaan') {
                     if ($_GET['action'] == 'tampil')
                         include_once('halaman/jenis_pekerjaan/tampil.php');
                     elseif ($_GET['action'] == 'tambah')
@@ -91,7 +91,7 @@ session_start();
                         include_once('halaman/jenis_pekerjaan/ubah.php');
                     elseif ($_GET['action'] == 'hapus')
                         include_once('halaman/jenis_pekerjaan/hapus.php');
-                } elseif ($_GET['sub_page'] == 'status_perkawinan') {
+                } elseif (($_GET['sub_page'] ?? '') == 'status_perkawinan') {
                     if ($_GET['action'] == 'tampil')
                         include_once('halaman/status_perkawinan/tampil.php');
                     elseif ($_GET['action'] == 'tambah')
@@ -101,6 +101,15 @@ session_start();
                     elseif ($_GET['action'] == 'hapus')
                         include_once('halaman/status_perkawinan/hapus.php');
                 }
+            } else  if ($_GET['page'] == 'pegawai') {
+                if ($_GET['action'] == 'tampil')
+                    include_once('halaman/pegawai/tampil.php');
+                elseif ($_GET['action'] == 'tambah')
+                    include_once('halaman/pegawai/tambah.php');
+                elseif ($_GET['action'] == 'ubah')
+                    include_once('halaman/pegawai/ubah.php');
+                elseif ($_GET['action'] == 'hapus')
+                    include_once('halaman/pegawai/hapus.php');
             }
         } else include_once('halaman/dashboard/dashboard.php');
         ?>
