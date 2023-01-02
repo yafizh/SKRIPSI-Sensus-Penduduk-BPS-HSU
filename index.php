@@ -119,6 +119,15 @@ session_start();
                     include_once('halaman/periode_sensus/ubah.php');
                 elseif ($_GET['action'] == 'hapus')
                     include_once('halaman/periode_sensus/hapus.php');
+            }  elseif ($_GET['page'] == 'kecamatan') {
+                if ($_GET['action'] == 'tampil')
+                    include_once('halaman/kecamatan/tampil.php');
+                elseif ($_GET['action'] == 'tambah')
+                    include_once('halaman/kecamatan/tambah.php');
+                elseif ($_GET['action'] == 'ubah')
+                    include_once('halaman/kecamatan/ubah.php');
+                elseif ($_GET['action'] == 'hapus')
+                    include_once('halaman/kecamatan/hapus.php');
             }
         } else include_once('halaman/dashboard/dashboard.php');
         ?>

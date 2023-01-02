@@ -72,8 +72,8 @@
                 <br>
                 <h6>Data Sensus</h6>
             </span>
-            <li class="nav-item">
-                <a href="#">
+            <li class="nav-item <?= ($_GET['page'] ?? '') == 'kecamatan' ? 'active' : ''; ?>">
+                <a href="?page=kecamatan&action=tampil">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M11.5,1L2,6V8H21V6M16,10V17H19V10M2,22H21V19H2M10,10V17H13V10M4,10V17H7V10H4Z" />
