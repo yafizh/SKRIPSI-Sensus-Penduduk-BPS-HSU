@@ -11,15 +11,14 @@ else
                 <div class="col">
                     <div class="title mb-30">
                         <?php if (count($periode_sensus)) : ?>
-                            <h2>Data Kecamatan (Periode Sensus <?= $periode_sensus[0]['tahun']; ?>)</h2>
+                            <h2>Data Kelurahan/Desa (Periode Sensus <?= $periode_sensus[0]['tahun']; ?>)</h2>
                         <?php else : ?>
-                            <h2>Data Kecamatan</h2>
+                            <h2>Data Kelurahan/Desa</h2>
                         <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-auto">
                     <button data-bs-toggle="modal" data-bs-target="#ModalOne" class="btn btn-info text-white mb-30">Pilih Periode Sensus</button>
-                    <a href="?page=kecamatan&action=tambah" class="btn btn-primary mb-30">Tambah</a>
                 </div>
             </div>
         </div>
@@ -73,6 +72,9 @@ else
                                             <th class="text-center">
                                                 <h6>Nama Kecamatan</h6>
                                             </th>
+                                            <th class="text-center">
+                                                <h6>Jumlah Kelurahan/Desa</h6>
+                                            </th>
                                             <th class="fit">
                                                 <h6></h6>
                                             </th>
@@ -81,7 +83,8 @@ else
                                     <?php
                                     $q = "
                                     SELECT 
-                                        kecamatan.*
+                                        *,
+                                        (SELECT COUNT(*) FROM `kelurahan/desa` WHERE id_kecamatan=kecamatan.id) AS jumlah 
                                     FROM 
                                         kecamatan 
                                     INNER JOIN 
@@ -89,7 +92,7 @@ else
                                     ON 
                                         periode_sensus.id=kecamatan.id_periode_sensus 
                                     WHERE 
-                                        periode_sensus.id=" . $periode_sensus[0]['id'] . "
+                                        periode_sensus.id=" . $periode_sensus[0]['id'] . " 
                                     ORDER BY 
                                         nama";
                                     $result = $koneksi->query($q);
@@ -104,12 +107,10 @@ else
                                                 <td class="text-center">
                                                     <p><?= $row['nama']; ?></p>
                                                 </td>
-                                                <td class="d-flex gap-2 fit">
-                                                    <div class="action">
-                                                        <a href="?page=kecamatan&action=ubah&id=<?= $row['id']; ?>" class="text-warning">
-                                                            <i class="lni lni-pencil"></i>
-                                                        </a>
-                                                    </div>
+                                                <td class="text-center">
+                                                    <p><?= $row['jumlah']; ?></p>
+                                                </td>
+                                                <td class="fit">
                                                     <div class="action">
                                                         <a onclick="return confirm('Yakin?')" href="?page=kecamatan&action=hapus&id=<?= $row['id']; ?>" class="text-danger">
                                                             <i class="lni lni-trash-can"></i>

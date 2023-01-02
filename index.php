@@ -119,7 +119,7 @@ session_start();
                     include_once('halaman/periode_sensus/ubah.php');
                 elseif ($_GET['action'] == 'hapus')
                     include_once('halaman/periode_sensus/hapus.php');
-            }  elseif ($_GET['page'] == 'kecamatan') {
+            } elseif ($_GET['page'] == 'kecamatan') {
                 if ($_GET['action'] == 'tampil')
                     include_once('halaman/kecamatan/tampil.php');
                 elseif ($_GET['action'] == 'tambah')
@@ -128,6 +128,15 @@ session_start();
                     include_once('halaman/kecamatan/ubah.php');
                 elseif ($_GET['action'] == 'hapus')
                     include_once('halaman/kecamatan/hapus.php');
+            } elseif ($_GET['page'] == 'kelurahan') {
+                if ($_GET['action'] == 'tampil')
+                    include_once('halaman/kelurahan/tampil.php');
+                elseif ($_GET['action'] == 'tambah')
+                    include_once('halaman/kelurahan/tambah.php');
+                elseif ($_GET['action'] == 'ubah')
+                    include_once('halaman/kelurahan/ubah.php');
+                elseif ($_GET['action'] == 'hapus')
+                    include_once('halaman/kelurahan/hapus.php');
             }
         } else include_once('halaman/dashboard/dashboard.php');
         ?>

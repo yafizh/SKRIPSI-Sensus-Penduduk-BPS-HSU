@@ -1,5 +1,17 @@
 <?php
-$data = $koneksi->query("SELECT * FROM kecamatan WHERE id=" . $_GET['id'])->fetch_assoc();
+$q = "
+    SELECT 
+        kecamatan.*,
+        periode_sensus.tahun  
+    FROM 
+        kecamatan 
+    INNER JOIN 
+        periode_sensus 
+    ON 
+        periode_sensus.id=kecamatan.id_periode_sensus 
+    WHERE 
+        kecamatan.id=" . $_GET['id'];
+$data = $koneksi->query($q)->fetch_assoc();
 if (isset($_POST['edit'])) {
     $nama = $koneksi->real_escape_string($_POST['nama']);
 
@@ -26,6 +38,12 @@ if (isset($_POST['edit'])) {
                     <div class="card-style mb-30">
                         <form action="" method="POST">
                             <div class="row">
+                                <div class="col-12">
+                                    <div class="input-style-1">
+                                        <label>Periode Sensus (Tahun)</label>
+                                        <input type="text" value="<?= $data['tahun']; ?>" disabled />
+                                    </div>
+                                </div>
                                 <div class="col-12">
                                     <div class="input-style-1">
                                         <label>Nama Kecamatan</label>
