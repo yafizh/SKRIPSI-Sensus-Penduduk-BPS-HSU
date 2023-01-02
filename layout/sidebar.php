@@ -1,8 +1,7 @@
 <aside class="sidebar-nav-wrapper">
     <div class="navbar-logo">
-        <a href="index.html">
-            <img src="assets/images/logo/logo.svg" alt="logo" />
-        </a>
+        <img src="assets/images/logo/bps.png" width="50" class="mb-3" alt="logo" />
+        <h6>APLIKASI SENSUS PENDUDUK BADAN PUSAT STATISTIK HULU SUNGAI UTARA</h6>
     </div>
     <nav class="sidebar-nav">
         <ul>

@@ -1,0 +1,16 @@
+1. Data Sosial (oke)
+2. Data Kependudukan (oke)
+3. Data Ekonomi
+4. Data Perdagangan
+5. Data Pertanian
+6. Data Pertambangan
+7. Data Kelurahan (oke)
+8. Data Kecamatan (oke)
+9. Data Kepindahan
+10. Data Kelahiran (oke)
+11. Data Kematian (oke)
+12. Data Kemiskinan
+13. Data Pendidikan (oke)
+14. Tenaga Kerja (oke)
+15. Data Kesehatan
+16. Grafik (oke)

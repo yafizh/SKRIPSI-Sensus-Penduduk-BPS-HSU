@@ -1,0 +1,13 @@
+Tamat SD/Sederajat
+Tidak/Belum Sekolah
+SLTA/Sederajat
+SLTP/Sederajat
+Belum Tamat SD/Sederajat
+Diploma IV/Strata I
+Diploma I/II
+Akademi/Diploma III/S. Muda
+Strata II
+Strata III
+
+Keterangan:
+SLTA: Sekolah Lanjutan Tingkat Atas

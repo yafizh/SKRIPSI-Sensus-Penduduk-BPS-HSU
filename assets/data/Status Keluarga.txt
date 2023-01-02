@@ -1,0 +1,10 @@
+Kepala Keluarga
+Suami: Suami dari kepala keluarga
+Istri: Istri dari kepala keluarga
+Anak: Mencakup anak kandung, anak tiri, atau anak angkat dari kepala keluarga.
+Menantu: suami atau istri dari anak kandung, anak tiri, atau anak angkat
+Cucu: Anak dari anak kandung, anak tiri, atau anak angkat
+Orang Tua: Ayah atau ibu dari kepala keluarga
+Mertua: Orang tua dari suami atau istri kepala keluarga
+Famili Lain: Mereka yang ada hubungan famili dengan kepala keluarga atau dengan suami/istri kepala keluarga, misalnya adik, kakak, bibi, paman, kakek, atau nenek
+Pembantu: Orang yang bekerja sebagai pembantu/sopir yang menginap di keluarga tersebut dengan menerima upah/gaji baik            berupa uang ataupun barang. Yang termasuk pembantu: Sopir, Anak Pembantu, Tukang Kebun
