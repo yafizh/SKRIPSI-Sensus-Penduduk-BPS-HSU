@@ -101,7 +101,7 @@ session_start();
                     elseif ($_GET['action'] == 'hapus')
                         include_once('halaman/status_perkawinan/hapus.php');
                 }
-            } else  if ($_GET['page'] == 'pegawai') {
+            } elseif ($_GET['page'] == 'pegawai') {
                 if ($_GET['action'] == 'tampil')
                     include_once('halaman/pegawai/tampil.php');
                 elseif ($_GET['action'] == 'tambah')
@@ -110,6 +110,15 @@ session_start();
                     include_once('halaman/pegawai/ubah.php');
                 elseif ($_GET['action'] == 'hapus')
                     include_once('halaman/pegawai/hapus.php');
+            } elseif ($_GET['page'] == 'periode_sensus') {
+                if ($_GET['action'] == 'tampil')
+                    include_once('halaman/periode_sensus/tampil.php');
+                elseif ($_GET['action'] == 'tambah')
+                    include_once('halaman/periode_sensus/tambah.php');
+                elseif ($_GET['action'] == 'ubah')
+                    include_once('halaman/periode_sensus/ubah.php');
+                elseif ($_GET['action'] == 'hapus')
+                    include_once('halaman/periode_sensus/hapus.php');
             }
         } else include_once('halaman/dashboard/dashboard.php');
         ?>
