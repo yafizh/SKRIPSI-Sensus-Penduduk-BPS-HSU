@@ -29,7 +29,7 @@
                     <span class="text">Admin</span>
                 </a>
             </li>
-            <li class="nav-item nav-item-has-children">
+            <li class="nav-item nav-item-has-children <?= ($_GET['page'] ?? '') == 'master_data' ? 'active' : ''; ?>">
                 <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -38,14 +38,14 @@
                     </span>
                     <span class="text">Master Data</span>
                 </a>
-                <ul id="ddmenu_2" class="collapse dropdown-nav">
-                    <li><a href="#">Golongan Darah</a></li>
-                    <li><a href="#">Status Keluarga</a></li>
-                    <li><a href="#">Pendidikan</a></li>
-                    <li><a href="#">Agama/Kepercayaan</a></li>
-                    <li><a href="#">Penyebab Kematian</a></li>
-                    <li><a href="#">Jenis Pekerjaan</a></li>
-                    <li><a href="#">Status Perkawinan</a></li>
+                <ul id="ddmenu_2" class="collapse dropdown-nav <?= ($_GET['page'] ?? '') == 'master_data' ? 'show' : ''; ?>">
+                    <li><a href="?page=master_data&sub_page=golongan_darah&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'golongan_darah' ? 'active' : ''; ?>">Golongan Darah</a></li>
+                    <li><a href="?page=master_data&sub_page=status_keluarga&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'status_keluarga' ? 'active' : ''; ?>">Status Keluarga</a></li>
+                    <li><a href="?page=master_data&sub_page=pendidikan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'pendidikan' ? 'active' : ''; ?>">Pendidikan</a></li>
+                    <li><a href="?page=master_data&sub_page=agama/kepercayaan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'agama/kepercayaan' ? 'active' : ''; ?>">Agama/Kepercayaan</a></li>
+                    <li><a href="?page=master_data&sub_page=penyebab_kematian&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'penyebab_kematian' ? 'active' : ''; ?>">Penyebab Kematian</a></li>
+                    <li><a href="?page=master_data&sub_page=jenis_pekerjaan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'jenis_pekerjaan' ? 'active' : ''; ?>">Jenis Pekerjaan</a></li>
+                    <li><a href="?page=master_data&sub_page=status_perkawinan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'status_perkawinan' ? 'active' : ''; ?>">Status Perkawinan</a></li>
                 </ul>
             </li>
             <li class="nav-item">

@@ -1,5 +1,5 @@
 <?php
-
+require_once('database/koneksi.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -17,7 +17,15 @@ session_start();
     <link rel="stylesheet" href="assets/css/lineicons.css" />
     <link rel="stylesheet" href="assets/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
+    <link rel="stylesheet" href="assets/css/datatable.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+
+    <style>
+        .fit {
+            width: 1%;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,7 +35,20 @@ session_start();
     <main class="main-wrapper">
         <?php include_once('layout/navbar.php'); ?>
         <?php
-        if (isset($_GET['halaman'])) {
+        if (isset($_GET['page'])) {
+            if ($_GET['page'] == 'master_data') {
+                if ($_GET['sub_page'] == 'golongan_darah') {
+                    if ($_GET['action'] == 'tampil')
+                        include_once('halaman/golongan_darah/tampil.php');
+                    elseif ($_GET['action'] == 'tambah')
+                        include_once('halaman/golongan_darah/tambah.php');
+                    elseif ($_GET['action'] == 'ubah')
+                        include_once('halaman/golongan_darah/ubah.php');
+                    elseif ($_GET['action'] == 'hapus')
+                        include_once('halaman/golongan_darah/hapus.php');
+                } elseif ($_GET['sub_page'] == 'status_keluarga')
+                    include_once('halaman/status_keluarga/tampil.php');
+            }
         } else include_once('halaman/dashboard/dashboard.php');
         ?>
     </main>
