@@ -73,6 +73,15 @@ session_start();
                         include_once('halaman/agama/ubah.php');
                     elseif ($_GET['action'] == 'hapus')
                         include_once('halaman/agama/hapus.php');
+                } elseif ($_GET['sub_page'] == 'penyebab_kematian') {
+                    if ($_GET['action'] == 'tampil')
+                        include_once('halaman/penyebab_kematian/tampil.php');
+                    elseif ($_GET['action'] == 'tambah')
+                        include_once('halaman/penyebab_kematian/tambah.php');
+                    elseif ($_GET['action'] == 'ubah')
+                        include_once('halaman/penyebab_kematian/ubah.php');
+                    elseif ($_GET['action'] == 'hapus')
+                        include_once('halaman/penyebab_kematian/hapus.php');
                 }
             }
         } else include_once('halaman/dashboard/dashboard.php');
