@@ -4,11 +4,11 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="title mb-30">
-                        <h2>Data Golongan Darah</h2>
+                        <h2>Data Status Keluarga</h2>
                     </div>
                 </div>
                 <div class="col-auto">
-                    <a href="?page=master_data&sub_page=golongan_darah&action=tambah" class="btn btn-primary mb-30">Tambah</a>
+                    <a href="?page=master_data&sub_page=status_keluarga&action=tambah" class="btn btn-primary mb-30">Tambah</a>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                                             <h6>No</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Golongan Darah</h6>
+                                            <h6>Status Keluarga</h6>
                                         </th>
                                         <th class="fit">
                                             <h6></h6>
@@ -32,7 +32,7 @@
                                     </tr>
                                 </thead>
                                 <?php
-                                $result = $koneksi->query("SELECT * FROM golongan_darah ORDER BY nama");
+                                $result = $koneksi->query("SELECT * FROM status_keluarga ORDER BY nama");
                                 $no = 1;
                                 ?>
                                 <tbody>
@@ -46,12 +46,12 @@
                                             </td>
                                             <td class="d-flex gap-2 fit">
                                                 <div class="action">
-                                                    <a href="?page=master_data&sub_page=golongan_darah&action=ubah&id=<?= $row['id']; ?>" class="text-warning">
+                                                    <a href="?page=master_data&sub_page=status_keluarga&action=ubah&id=<?= $row['id']; ?>" class="text-warning">
                                                         <i class="lni lni-pencil"></i>
                                                     </a>
                                                 </div>
                                                 <div class="action">
-                                                    <a onclick="return confirm('Yakin?')" href="?page=master_data&sub_page=golongan_darah&action=hapus&id=<?= $row['id']; ?>" class="text-danger">
+                                                    <a onclick="return confirm('Yakin?')" href="?page=master_data&sub_page=status_keluarga&action=hapus&id=<?= $row['id']; ?>" class="text-danger">
                                                         <i class="lni lni-trash-can"></i>
                                                     </a>
                                                 </div>

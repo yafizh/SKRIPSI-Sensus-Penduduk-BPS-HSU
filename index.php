@@ -46,8 +46,16 @@ session_start();
                         include_once('halaman/golongan_darah/ubah.php');
                     elseif ($_GET['action'] == 'hapus')
                         include_once('halaman/golongan_darah/hapus.php');
-                } elseif ($_GET['sub_page'] == 'status_keluarga')
-                    include_once('halaman/status_keluarga/tampil.php');
+                } elseif ($_GET['sub_page'] == 'status_keluarga') {
+                    if ($_GET['action'] == 'tampil')
+                        include_once('halaman/status_keluarga/tampil.php');
+                    elseif ($_GET['action'] == 'tambah')
+                        include_once('halaman/status_keluarga/tambah.php');
+                    elseif ($_GET['action'] == 'ubah')
+                        include_once('halaman/status_keluarga/ubah.php');
+                    elseif ($_GET['action'] == 'hapus')
+                        include_once('halaman/status_keluarga/hapus.php');
+                }
             }
         } else include_once('halaman/dashboard/dashboard.php');
         ?>
