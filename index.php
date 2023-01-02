@@ -91,6 +91,15 @@ session_start();
                         include_once('halaman/jenis_pekerjaan/ubah.php');
                     elseif ($_GET['action'] == 'hapus')
                         include_once('halaman/jenis_pekerjaan/hapus.php');
+                } elseif ($_GET['sub_page'] == 'status_perkawinan') {
+                    if ($_GET['action'] == 'tampil')
+                        include_once('halaman/status_perkawinan/tampil.php');
+                    elseif ($_GET['action'] == 'tambah')
+                        include_once('halaman/status_perkawinan/tambah.php');
+                    elseif ($_GET['action'] == 'ubah')
+                        include_once('halaman/status_perkawinan/ubah.php');
+                    elseif ($_GET['action'] == 'hapus')
+                        include_once('halaman/status_perkawinan/hapus.php');
                 }
             }
         } else include_once('halaman/dashboard/dashboard.php');
