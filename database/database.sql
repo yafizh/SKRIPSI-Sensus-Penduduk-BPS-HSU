@@ -55,6 +55,7 @@ CREATE TABLE `db_sensus_penduduk`.`kelurahan/desa`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `id_kecamatan` BIGINT UNSIGNED,
     `nama` VARCHAR(255) UNIQUE,
+    `status` VARCHAR(255),
     PRIMARY KEY(`id`),
     FOREIGN KEY (`id_kecamatan`) REFERENCES kecamatan (`id`) ON DELETE CASCADE
 );
@@ -90,30 +91,33 @@ CREATE TABLE `db_sensus_penduduk`.`pegawai`(
     FOREIGN KEY (`id_agama/kepercayaan`) REFERENCES `agama/kepercayaan` (`id`) ON DELETE CASCADE
 );
 
-CREATE TABLE `db_sensus_penduduk`.`petugas_kecamatan`(
+CREATE TABLE `db_sensus_penduduk`.`petugas`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `id_pengguna` BIGINT UNSIGNED,
     `id_pegawai` BIGINT UNSIGNED,
-    `id_kecamatan` BIGINT UNSIGNED,
     `id_periode_sensus` BIGINT UNSIGNED,
     PRIMARY KEY(`id`),
     FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`id_kecamatan`) REFERENCES `kecamatan` (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`id_periode_sensus`) REFERENCES `periode_sensus` (`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `db_sensus_penduduk`.`petugas_kecamatan`(
+    `id` BIGINT UNSIGNED AUTO_INCREMENT,
+    `id_petugas` BIGINT UNSIGNED,
+    `id_kecamatan` BIGINT UNSIGNED,
+    PRIMARY KEY(`id`),
+    FOREIGN KEY (`id_petugas`) REFERENCES `petugas` (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`id_kecamatan`) REFERENCES `kecamatan` (`id`) ON DELETE CASCADE
 );
 
 CREATE TABLE `db_sensus_penduduk`.`petugas_kelurahan/desa`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
-    `id_pengguna` BIGINT UNSIGNED,
-    `id_pegawai` BIGINT UNSIGNED,
+    `id_petugas` BIGINT UNSIGNED,
     `id_kelurahan/desa` BIGINT UNSIGNED,
-    `id_periode_sensus` BIGINT UNSIGNED,
     PRIMARY KEY(`id`),
-    FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`id_kelurahan/desa`) REFERENCES `kelurahan/desa` (`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`id_periode_sensus`) REFERENCES `periode_sensus` (`id`) ON DELETE CASCADE
+    FOREIGN KEY (`id_petugas`) REFERENCES `petugas` (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`id_kelurahan/desa`) REFERENCES `kelurahan/desa` (`id`) ON DELETE CASCADE
 );
 
 -- 
