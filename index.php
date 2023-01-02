@@ -82,6 +82,15 @@ session_start();
                         include_once('halaman/penyebab_kematian/ubah.php');
                     elseif ($_GET['action'] == 'hapus')
                         include_once('halaman/penyebab_kematian/hapus.php');
+                } elseif ($_GET['sub_page'] == 'jenis_pekerjaan') {
+                    if ($_GET['action'] == 'tampil')
+                        include_once('halaman/jenis_pekerjaan/tampil.php');
+                    elseif ($_GET['action'] == 'tambah')
+                        include_once('halaman/jenis_pekerjaan/tambah.php');
+                    elseif ($_GET['action'] == 'ubah')
+                        include_once('halaman/jenis_pekerjaan/ubah.php');
+                    elseif ($_GET['action'] == 'hapus')
+                        include_once('halaman/jenis_pekerjaan/hapus.php');
                 }
             }
         } else include_once('halaman/dashboard/dashboard.php');
