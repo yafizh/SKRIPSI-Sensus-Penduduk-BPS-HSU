@@ -11,9 +11,9 @@ else
                 <div class="col">
                     <div class="title mb-30">
                         <?php if (count($periode_sensus)) : ?>
-                            <h2>Data Kecamatan (Periode Sensus <?= $periode_sensus[0]['tahun']; ?>)</h2>
+                            <h3>Data Kecamatan (Periode Sensus <?= $periode_sensus[0]['tahun']; ?>)</h3>
                         <?php else : ?>
-                            <h2>Data Kecamatan</h2>
+                            <h3>Data Kecamatan</h3>
                         <?php endif; ?>
                     </div>
                 </div>

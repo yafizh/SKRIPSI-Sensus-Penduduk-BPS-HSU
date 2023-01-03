@@ -4,7 +4,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="title mb-30">
-                        <h2>Data Agama/Kepercayaan</h2>
+                        <h3>Data Agama/Kepercayaan</h3>
                     </div>
                 </div>
                 <div class="col-auto">

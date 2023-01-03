@@ -65,12 +65,10 @@ CREATE TABLE `db_sensus_penduduk`.`kecamatan`(
 CREATE TABLE `db_sensus_penduduk`.`kelurahan/desa`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `id_kecamatan` BIGINT UNSIGNED,
-    `id_periode_sensus` BIGINT UNSIGNED,
     `nama` VARCHAR(255) UNIQUE,
     `status` VARCHAR(255),
     PRIMARY KEY(`id`),
-    FOREIGN KEY (`id_kecamatan`) REFERENCES kecamatan (`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`id_periode_sensus`) REFERENCES periode_sensus (`id`) ON DELETE CASCADE
+    FOREIGN KEY (`id_kecamatan`) REFERENCES kecamatan (`id`) ON DELETE CASCADE
 );
 
 -- 

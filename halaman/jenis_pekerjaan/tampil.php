@@ -4,7 +4,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="title mb-30">
-                        <h2>Data Jenis Pekerjaan</h2>
+                        <h3>Data Jenis Pekerjaan</h3>
                     </div>
                 </div>
                 <div class="col-auto">
