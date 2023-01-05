@@ -36,28 +36,34 @@
                                 $no = 1;
                                 ?>
                                 <tbody>
-                                    <?php while ($row = $result->fetch_assoc()) : ?>
+                                    <?php if ($result->num_rows) : ?>
+                                        <?php while ($row = $result->fetch_assoc()) : ?>
+                                            <tr>
+                                                <td class="text-center fit">
+                                                    <p><?= $no++; ?></p>
+                                                </td>
+                                                <td class="text-center">
+                                                    <p><?= $row['nama']; ?></p>
+                                                </td>
+                                                <td class="d-flex gap-2 fit">
+                                                    <div class="action">
+                                                        <a href="?page=master_data&sub_page=agama&action=ubah&id=<?= $row['id']; ?>" class="text-warning">
+                                                            <i class="lni lni-pencil"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="action">
+                                                        <a onclick="return confirm('Yakin?')" href="?page=master_data&sub_page=agama&action=hapus&id=<?= $row['id']; ?>" class="text-danger">
+                                                            <i class="lni lni-trash-can"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endwhile; ?>
+                                    <?php else : ?>
                                         <tr>
-                                            <td class="text-center fit">
-                                                <p><?= $no++; ?></p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p><?= $row['nama']; ?></p>
-                                            </td>
-                                            <td class="d-flex gap-2 fit">
-                                                <div class="action">
-                                                    <a href="?page=master_data&sub_page=agama&action=ubah&id=<?= $row['id']; ?>" class="text-warning">
-                                                        <i class="lni lni-pencil"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="action">
-                                                    <a onclick="return confirm('Yakin?')" href="?page=master_data&sub_page=agama&action=hapus&id=<?= $row['id']; ?>" class="text-danger">
-                                                        <i class="lni lni-trash-can"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
+                                            <td class="text-center" colspan="3">Data Kosong</td>
                                         </tr>
-                                    <?php endwhile; ?>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -67,21 +73,4 @@
         </div>
     </div>
 </section>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/Chart.min.js"></script>
-<script src="assets/js/apexcharts.min.js"></script>
-<script src="assets/js/dynamic-pie-chart.js"></script>
-<script src="assets/js/moment.min.js"></script>
-<script src="assets/js/fullcalendar.js"></script>
-<script src="assets/js/jvectormap.min.js"></script>
-<script src="assets/js/world-merc.js"></script>
-<script src="assets/js/polyfill.js"></script>
-<script src="assets/js/quill.min.js"></script>
-<script src="assets/js/datatable.js"></script>
-<script src="assets/js/Sortable.min.js"></script>
-<script src="assets/js/main.js"></script>
-<script>
-    const dataTable = new simpleDatatables.DataTable("#table", {
-        searchable: true,
-    });
-</script>
+<?php include_once('layout/js.php'); ?>
