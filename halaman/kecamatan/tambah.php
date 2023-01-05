@@ -57,5 +57,5 @@ if (isset($_POST['tambah'])) {
             </div>
         </div>
     </div>
-
 </section>
+<?php include_once('layout/js.php'); ?>

@@ -25,6 +25,14 @@ session_start();
             width: 1%;
             white-space: nowrap;
         }
+
+        .breadcrumb-item {
+            color: #5D657B;
+        }
+
+        .breadcrumb-item:hover {
+            color: #4A6CF7;
+        }
     </style>
 </head>
 
@@ -131,6 +139,8 @@ session_start();
             } elseif ($_GET['page'] == 'kelurahan') {
                 if ($_GET['action'] == 'tampil')
                     include_once('halaman/kelurahan/tampil.php');
+                elseif ($_GET['action'] == 'detail')
+                    include_once('halaman/kelurahan/tampil_per_kecamatan.php');
                 elseif ($_GET['action'] == 'tambah')
                     include_once('halaman/kelurahan/tambah.php');
                 elseif ($_GET['action'] == 'ubah')
