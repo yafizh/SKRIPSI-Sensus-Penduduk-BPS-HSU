@@ -109,6 +109,15 @@ session_start();
                     elseif ($_GET['action'] == 'hapus')
                         include_once('halaman/status_perkawinan/hapus.php');
                 }
+            } elseif ($_GET['page'] == 'admin') {
+                if ($_GET['action'] == 'tampil')
+                    include_once('halaman/admin/tampil.php');
+                elseif ($_GET['action'] == 'tambah')
+                    include_once('halaman/admin/tambah.php');
+                elseif ($_GET['action'] == 'ubah')
+                    include_once('halaman/admin/ubah.php');
+                elseif ($_GET['action'] == 'hapus')
+                    include_once('halaman/admin/hapus.php');
             } elseif ($_GET['page'] == 'pegawai') {
                 if ($_GET['action'] == 'tampil')
                     include_once('halaman/pegawai/tampil.php');
