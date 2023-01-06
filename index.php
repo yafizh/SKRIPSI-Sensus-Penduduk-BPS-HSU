@@ -162,6 +162,10 @@ session_start();
                 } elseif (($_GET['sub_page'] ?? '') == 'petugas_kelurahan') {
                     if ($_GET['action'] == 'tampil')
                         include_once('halaman/petugas_kelurahan/tampil.php');
+                    elseif ($_GET['action'] == 'detail')
+                        include_once('halaman/petugas_kelurahan/tampil_per_kecamatan.php');
+                    elseif ($_GET['action'] == 'detail_petugas')
+                        include_once('halaman/petugas_kelurahan/tampil_per_kelurahan.php');
                     elseif ($_GET['action'] == 'tambah')
                         include_once('halaman/petugas_kelurahan/tambah.php');
                     elseif ($_GET['action'] == 'ubah')
