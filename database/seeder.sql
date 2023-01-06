@@ -1,3 +1,9 @@
+INSERT INTO `pengguna` (
+    `username`,
+    `password` 
+) VALUES 
+('admin', 'admin');
+
 INSERT INTO `pendidikan` (
     `id`,
     `nama`
