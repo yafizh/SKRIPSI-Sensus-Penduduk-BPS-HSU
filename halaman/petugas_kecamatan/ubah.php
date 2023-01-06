@@ -134,6 +134,8 @@ if (isset($_POST['edit'])) {
                                                     pk.id_kecamatan=" . $kecamatan['id'] . " 
                                                     AND 
                                                     p.id_pegawai != " . $data['id_pegawai'] . "
+                                                    AND 
+                                                    p.id_periode_sensus=" . $periode_sensus['id'] . " 
                                             )";
                                     $pegawai = $koneksi->query($q);
                                     ?>

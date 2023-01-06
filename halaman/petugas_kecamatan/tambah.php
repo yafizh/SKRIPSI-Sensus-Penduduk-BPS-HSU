@@ -89,7 +89,9 @@ if (isset($_POST['tambah'])) {
                                                 ON 
                                                     pk.id_petugas=p.id  
                                                 WHERE 
-                                                    pk.id_kecamatan=" . $kecamatan['id'] . "
+                                                    pk.id_kecamatan=" . $kecamatan['id'] . " 
+                                                    AND 
+                                                    p.id_periode_sensus=" . $periode_sensus['id'] . " 
                                             )";
                                     $pegawai = $koneksi->query($q);
                                     ?>
