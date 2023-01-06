@@ -92,8 +92,8 @@
                     <span class="text">Data Kelurahan/Desa</span>
                 </a>
             </li>
-            <li class="nav-item nav-item-has-children">
-                <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_3" aria-controls="ddmenu_3" aria-expanded="false" aria-label="Toggle navigation">
+            <li class="nav-item nav-item-has-children <?= ($_GET['page'] ?? '') == 'petugas' ? 'active' : ''; ?>">
+                <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#petugas" aria-controls="petugas" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M16 9C16 14.33 8 14.33 8 9H10C10 11.67 14 11.67 14 9M20 18V21H4V18C4 15.33 9.33 14 12 14C14.67 14 20 15.33 20 18M18.1 18C18.1 17.36 14.97 15.9 12 15.9C9.03 15.9 5.9 17.36 5.9 18V19.1H18.1M12.5 2C12.78 2 13 2.22 13 2.5V5.5H14V3C15.45 3.67 16.34 5.16 16.25 6.75C16.25 6.75 16.95 6.89 17 8H7C7 6.89 7.75 6.75 7.75 6.75C7.66 5.16 8.55 3.67 10 3V5.5H11V2.5C11 2.22 11.22 2 11.5 2" />
@@ -101,9 +101,9 @@
                     </span>
                     <span class="text">Petugas</span>
                 </a>
-                <ul id="ddmenu_3" class="collapse dropdown-nav">
-                    <li><a href="#">Petugas Kecamatan</a></li>
-                    <li><a href="#">Petugas Kelurahan/Desa</a></li>
+                <ul id="petugas" class="collapse dropdown-nav <?= ($_GET['page'] ?? '') == 'petugas' ? 'show' : ''; ?>">
+                    <li><a href="?page=petugas&sub_page=petugas_kecamatan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'petugas_kecamatan' ? 'active' : ''; ?>">Petugas Kecamatan</a></li>
+                    <li><a href="?page=petugas&sub_page=petugas_kelurahan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'petugas_kelurahan' ? 'active' : ''; ?>">Petugas Kelurahan/Desa</a></li>
                 </ul>
             </li>
             <li class="nav-item nav-item-has-children">

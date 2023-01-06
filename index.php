@@ -147,6 +147,28 @@ session_start();
                     include_once('halaman/kelurahan/ubah.php');
                 elseif ($_GET['action'] == 'hapus')
                     include_once('halaman/kelurahan/hapus.php');
+            } elseif ($_GET['page'] == 'petugas') {
+                if (($_GET['sub_page'] ?? '') == 'petugas_kecamatan') {
+                    if ($_GET['action'] == 'tampil')
+                        include_once('halaman/petugas_kecamatan/tampil.php');
+                    elseif ($_GET['action'] == 'detail')
+                        include_once('halaman/petugas_kecamatan/tampil_per_kecamatan.php');
+                    elseif ($_GET['action'] == 'tambah')
+                        include_once('halaman/petugas_kecamatan/tambah.php');
+                    elseif ($_GET['action'] == 'ubah')
+                        include_once('halaman/petugas_kecamatan/ubah.php');
+                    elseif ($_GET['action'] == 'hapus')
+                        include_once('halaman/petugas_kecamatan/hapus.php');
+                } elseif (($_GET['sub_page'] ?? '') == 'petugas_kelurahan') {
+                    if ($_GET['action'] == 'tampil')
+                        include_once('halaman/petugas_kelurahan/tampil.php');
+                    elseif ($_GET['action'] == 'tambah')
+                        include_once('halaman/petugas_kelurahan/tambah.php');
+                    elseif ($_GET['action'] == 'ubah')
+                        include_once('halaman/petugas_kelurahan/ubah.php');
+                    elseif ($_GET['action'] == 'hapus')
+                        include_once('halaman/petugas_kelurahan/hapus.php');
+                }
             }
         } else include_once('halaman/dashboard/dashboard.php');
         ?>
