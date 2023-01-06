@@ -41,7 +41,7 @@ if (!isset($_SESSION['user']))
 
 <body>
     <?php if (isset($_SESSION['user']['id_petugas'])) : ?>
-        <?php include_once('layout/sidebar2.php'); ?>
+        <?php include_once('layout/sidebar_petugas.php'); ?>
     <?php else : ?>
         <?php include_once('layout/sidebar.php'); ?>
     <?php endif; ?>
@@ -50,7 +50,10 @@ if (!isset($_SESSION['user']))
     <main class="main-wrapper">
         <?php include_once('layout/navbar.php'); ?>
         <?php if (isset($_SESSION['user']['id_petugas'])) : ?>
-            <?php include_once('layout/sidebar2.php'); ?>
+            <?php
+            if (isset($_GET['page'])) {
+            } else include_once('halaman/dashboard/dashboard_petugas.php');
+            ?>
         <?php else : ?>
             <?php
             if (isset($_GET['page'])) {
