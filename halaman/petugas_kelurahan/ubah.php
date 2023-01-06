@@ -1,4 +1,4 @@
-<?php 
+<?php
 $q = "
     SELECT 
         pkd.*,
@@ -60,7 +60,11 @@ if (isset($_POST['edit'])) {
             $id_pengguna = $koneksi->insert_id;
         }
 
-        $q = "
+        $check = $koneksi->query("SELECT * FROM petugas WHERE id_pegawai='$id_pegawai' AND id_periode_sensus=" . $periode_sensus['id']);
+        if ($check->num_rows) {
+            $id_petugas = $check->fetch_assoc()['id'];
+        } else {
+            $q = "
             INSERT INTO petugas (
                 id_pengguna, 
                 id_pegawai,
@@ -70,14 +74,18 @@ if (isset($_POST['edit'])) {
                 $id_pegawai,
                 " . $periode_sensus['id'] . "
             )";
-        $koneksi->query($q);
+            $koneksi->query($q);
+            $id_petugas = $koneksi->insert_id;
+        }
+
+
 
         $q = "
         INSERT INTO `petugas_kelurahan/desa` (
             id_petugas, 
             `id_kelurahan/desa` 
         ) VALUES (
-            " . $koneksi->insert_id . ",
+            " . $id_petugas . ",
             " . $kelurahan['id'] . " 
         )";
         $koneksi->query($q);
@@ -142,7 +150,7 @@ if (isset($_POST['edit'])) {
                                                     AND 
                                                     p.id_pegawai != " . $data['id_pegawai'] . " 
                                                     AND 
-                                                    p.id_periode_sensus=".$periode_sensus['id']." 
+                                                    p.id_periode_sensus=" . $periode_sensus['id'] . " 
                                             )";
                                     $pegawai = $koneksi->query($q);
                                     ?>

@@ -17,7 +17,13 @@ if (isset($_POST['tambah'])) {
             $id_pengguna = $koneksi->insert_id;
         }
 
-        $q = "
+
+
+        $check = $koneksi->query("SELECT * FROM petugas WHERE id_pegawai='$id_pegawai' AND id_periode_sensus=" . $periode_sensus['id']);
+        if ($check->num_rows) {
+            $id_petugas = $check->fetch_assoc()['id'];
+        } else {
+            $q = "
             INSERT INTO petugas (
                 id_pengguna, 
                 id_pegawai,
@@ -27,14 +33,16 @@ if (isset($_POST['tambah'])) {
                 $id_pegawai,
                 " . $periode_sensus['id'] . "
             )";
-        $koneksi->query($q);
+            $koneksi->query($q);
+            $id_petugas = $koneksi->insert_id;
+        }
 
         $q = "
         INSERT INTO petugas_kecamatan (
             id_petugas, 
             id_kecamatan 
         ) VALUES (
-            " . $koneksi->insert_id . ",
+            " . $id_petugas . ",
             " . $kecamatan['id'] . " 
         )";
         $koneksi->query($q);
