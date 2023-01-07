@@ -195,6 +195,21 @@ if (!isset($_SESSION['user']))
                         elseif ($_GET['action'] == 'hapus')
                             include_once('halaman/petugas_kelurahan/hapus.php');
                     }
+                } elseif ($_GET['page'] == 'data_sensus') {
+                    if (($_GET['sub_page'] ?? '') == 'penduduk') {
+                        if ($_GET['action'] == 'tampil')
+                            include_once('halaman/penduduk/admin/tampil.php');
+                        elseif ($_GET['action'] == 'detail_per_kecamatan')
+                            include_once('halaman/penduduk/admin/tampil_per_kecamatan.php');
+                        elseif ($_GET['action'] == 'detail_per_kelurahan')
+                            include_once('halaman/penduduk/admin/tampil_per_kelurahan.php');
+                        elseif ($_GET['action'] == 'tambah')
+                            include_once('halaman/penduduk/admin/tambah.php');
+                        elseif ($_GET['action'] == 'ubah')
+                            include_once('halaman/penduduk/admin/ubah.php');
+                        elseif ($_GET['action'] == 'hapus')
+                            include_once('halaman/penduduk/admin/hapus.php');
+                    }
                 }
             } else include_once('halaman/dashboard/dashboard.php');
             ?>

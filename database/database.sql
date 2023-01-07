@@ -11,6 +11,7 @@ CREATE TABLE `db_sensus_penduduk`.`golongan_darah`(
 CREATE TABLE `db_sensus_penduduk`.`status_keluarga`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `nama` VARCHAR(255) UNIQUE,
+    `tingkat` INT UNSIGNED,
     PRIMARY KEY(`id`)
 );
 

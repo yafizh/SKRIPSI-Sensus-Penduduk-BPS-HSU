@@ -106,8 +106,8 @@
                     <li><a href="?page=petugas&sub_page=petugas_kelurahan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'petugas_kelurahan' ? 'active' : ''; ?>">Petugas Kelurahan/Desa</a></li>
                 </ul>
             </li>
-            <li class="nav-item nav-item-has-children">
-                <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_4" aria-controls="ddmenu_4" aria-expanded="false" aria-label="Toggle navigation">
+            <li class="nav-item nav-item-has-children <?= ($_GET['page'] ?? '') == 'data_sensus' ? 'active' : ''; ?>">
+                <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#data-sensus" aria-controls="data-sensus" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M18 2A2 2 0 0 1 20 4V20A2 2 0 0 1 18 22H6A2 2 0 0 1 4 20V4A2 2 0 0 1 6 2H18M18 4H13V9L10.5 6.7L8 9V4H6V20H18M13 11A2 2 0 1 1 11 13A2 2 0 0 1 13 11M17 19H9V18C9 16.67 11.67 16 13 16S17 16.67 17 18V19" />
@@ -115,8 +115,8 @@
                     </span>
                     <span class="text">Data Sensus</span>
                 </a>
-                <ul id="ddmenu_4" class="collapse dropdown-nav">
-                    <li><a href="#">Penduduk</a></li>
+                <ul id="data-sensus" class="collapse dropdown-nav <?= ($_GET['page'] ?? '') == 'data_sensus' ? 'show' : ''; ?>">
+                    <li><a href="?page=data_sensus&sub_page=penduduk&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'penduduk' ? 'active' : ''; ?>">Penduduk</a></li>
                     <li><a href="#">Kelahiran</a></li>
                     <li><a href="#">Kematian</a></li>
                     <li><a href="#">Pendidikan</a></li>
@@ -127,8 +127,8 @@
                 <br>
                 <h6>Laporan</h6>
             </span>
-            <li class="nav-item nav-item-has-children">
-                <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_5" aria-controls="ddmenu_5" aria-expanded="false" aria-label="Toggle navigation">
+            <li class="nav-item nav-item-has-children <?= ($_GET['page'] ?? '') == 'laporan' ? 'active' : ''; ?>">
+                <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#laporan" aria-controls="laporan" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M16 0H8C6.9 0 6 .9 6 2V18C6 19.1 6.9 20 8 20H20C21.1 20 22 19.1 22 18V6L16 0M20 18H8V2H15V7H20V18M4 4V22H20V24H4C2.9 24 2 23.1 2 22V4H4M10 10V12H18V10H10M10 14V16H15V14H10Z" />
@@ -136,15 +136,17 @@
                     </span>
                     <span class="text">Laporan</span>
                 </a>
-                <ul id="ddmenu_5" class="collapse dropdown-nav">
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
+                <ul id="laporan" class="collapse dropdown-nav <?= ($_GET['page'] ?? '') == 'laporan' ? 'show' : ''; ?>">
+                    <li><a href="?page=laporan&sub_page=pegawai&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'pegawai' ? 'active' : ''; ?>">Pegawai</a></li>
+                    <li><a href="?page=laporan&sub_page=kecamatan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'kecamatan' ? 'active' : ''; ?>">Kecamatan</a></li>
+                    <li><a href="#">Kelurahan/Desa</a></li>
+                    <li><a href="#">Petugas Kecamatan</a></li>
+                    <li><a href="#">Petugas Kelurahan/Desa</a></li>
+                    <li><a href="#">Grafik Penduduk</a></li>
+                    <li><a href="#">Grafik Kematian</a></li>
+                    <li><a href="#">Grafik Pendidikan</a></li>
+                    <li><a href="#">Grafik Kelahiran</a></li>
+                    <li><a href="#">Grafik Tenaga Kerja</a></li>
                 </ul>
             </li>
         </ul>
