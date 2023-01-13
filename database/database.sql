@@ -223,7 +223,7 @@ CREATE TABLE `db_sensus_penduduk`.`kartu_keluarga`(
     `alamat` TEXT,
     `rt` VARCHAR(255),
     `rw` VARCHAR(255),
-    `kode_post` VARCHAR(255),
+    `kode_pos` VARCHAR(255),
     PRIMARY KEY(`id`),
     FOREIGN KEY (`id_kelurahan/desa`) REFERENCES `kelurahan/desa` (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`id_periode_sensus`) REFERENCES `periode_sensus` (`id`) ON DELETE CASCADE

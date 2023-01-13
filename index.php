@@ -52,14 +52,18 @@ if (!isset($_SESSION['user']))
         <?php if (isset($_SESSION['user']['id_petugas'])) : ?>
             <?php
             if (isset($_GET['page'])) {
-                if ($_GET['action'] == 'penduduk')
-                    include_once('halaman/penduduk/admin/tampil_per_kelurahan.php');
-                elseif ($_GET['action'] == 'tambah')
-                    include_once('halaman/penduduk/admin/tambah.php');
-                elseif ($_GET['action'] == 'ubah')
-                    include_once('halaman/penduduk/admin/ubah.php');
-                elseif ($_GET['action'] == 'hapus')
-                    include_once('halaman/penduduk/admin/hapus.php');
+                if ($_GET['page'] == 'kecamatan') {
+                    if (($_GET['sub_page'] ?? '') == 'kelurahan') {
+                        if ($_GET['action'] == 'tampil')
+                            include_once('halaman/penduduk/tampil_per_kelurahan.php');
+                        elseif ($_GET['action'] == 'detail_per_anggota_keluarga')
+                            include_once('halaman/penduduk/tampil_per_kartu_keluarga.php');
+                        elseif ($_GET['action'] == 'tambah')
+                            include_once('halaman/penduduk/tambah.php');
+                        elseif ($_GET['action'] == 'tambah_anggota_keluarga')
+                            include_once('halaman/penduduk/tambah_anggota_keluarga.php');
+                    }
+                }
             } else include_once('halaman/dashboard/dashboard_petugas.php');
             ?>
         <?php else : ?>
@@ -206,17 +210,17 @@ if (!isset($_SESSION['user']))
                 } elseif ($_GET['page'] == 'data_sensus') {
                     if (($_GET['sub_page'] ?? '') == 'penduduk') {
                         if ($_GET['action'] == 'tampil')
-                            include_once('halaman/penduduk/admin/tampil.php');
+                            include_once('halaman/penduduk/tampil.php');
                         elseif ($_GET['action'] == 'detail_per_kecamatan')
-                            include_once('halaman/penduduk/admin/tampil_per_kecamatan.php');
+                            include_once('halaman/penduduk/tampil_per_kecamatan.php');
                         elseif ($_GET['action'] == 'detail_per_kelurahan')
-                            include_once('halaman/penduduk/admin/tampil_per_kelurahan.php');
+                            include_once('halaman/penduduk/tampil_per_kelurahan.php');
                         elseif ($_GET['action'] == 'tambah')
-                            include_once('halaman/penduduk/admin/tambah.php');
+                            include_once('halaman/penduduk/tambah.php');
                         elseif ($_GET['action'] == 'ubah')
-                            include_once('halaman/penduduk/admin/ubah.php');
+                            include_once('halaman/penduduk/ubah.php');
                         elseif ($_GET['action'] == 'hapus')
-                            include_once('halaman/penduduk/admin/hapus.php');
+                            include_once('halaman/penduduk/hapus.php');
                     }
                 }
             } else include_once('halaman/dashboard/dashboard.php');

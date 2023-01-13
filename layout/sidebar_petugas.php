@@ -58,14 +58,14 @@ if ($periode_sensus->num_rows) {
                     <h6>Kecamatan</h6>
                 </span>
                 <?php while ($row = $kecamatan->fetch_assoc()) : ?>
-                    <li class="nav-item nav-item-has-children">
+                    <li class="nav-item nav-item-has-children <?= (($_GET['page'] ?? '') == 'kecamatan') && (($_GET['id_kecamatan'] ?? '') == $row['id_kecamatan']) ? 'active' : ''; ?>">
                         <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#kecamatan-<?= $row['id_kecamatan']; ?>" aria-controls="kecamatan-<?= $row['id_kecamatan']; ?>" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="text"><?= $row['nama']; ?></span>
                         </a>
                         <?php $kelurahan_dalam_kecamatan = $koneksi->query("SELECT * FROM `kelurahan/desa` WHERE id_kecamatan=" . $row['id_kecamatan']); ?>
-                        <ul id="kecamatan-<?= $row['id_kecamatan']; ?>" class="collapse dropdown-nav">
+                        <ul id="kecamatan-<?= $row['id_kecamatan']; ?>" class="collapse dropdown-nav <?= (($_GET['page'] ?? '') == 'kecamatan') && (($_GET['id_kecamatan'] ?? '') == $row['id_kecamatan']) ? 'show' : ''; ?>">
                             <?php while ($row2 = $kelurahan_dalam_kecamatan->fetch_assoc()) : ?>
-                                <li><a href="?hpenduduk"><?= $row2['status']; ?> <?= $row2['nama']; ?></a></li>
+                                <li><a href="?page=kecamatan&sub_page=kelurahan&action=tampil&id_kecamatan=<?= $row['id_kecamatan']; ?>&id_kelurahan=<?= $row2['id']; ?>" class="<?= (($_GET['sub_page'] ?? '') == 'kelurahan') && (($_GET['id_kelurahan'] ?? '') == $row2['id']) ? 'active' : ''; ?>"><?= $row2['status']; ?> <?= $row2['nama']; ?></a></li>
                             <?php endwhile; ?>
                         </ul>
                     </li>
