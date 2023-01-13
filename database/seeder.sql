@@ -235,6 +235,8 @@ INSERT INTO `pegawai` (
     `tanggal_lahir`,
     `foto` 
 ) VALUES 
-(6, 2, '1111111111111111', 'Yoga', 'Binuang', '2000-01-01', ''),
-(6, 2, '2222222222222222', 'Tidier', 'Binuang', '2000-01-01', ''),
-(6, 2, '3333333333333333', 'Amat', 'Binuang', '2000-01-01', '');
+(6, 1, '199610102019022001', 'Ida Faridatul Alawiyah, S.ST', 'Binuang', '1996-10-10', ''),
+(6, 1, '198609262015051002', 'Awanis, S.TP., M.Si', 'Binuang', '1995-01-01', ''),
+(6, 1, '198609262015051007', 'Muhammad Ali', 'Binuang', '1986-09-26', ''),
+(6, 1, '198609262015051003', 'Muhammad Syarif, S.ST', 'Binuang', '1995-01-01', ''),
+(6, 1, '198609262015051331', 'Puspita Harum Maharani, M.Sc', 'Binuang', '1995-01-01', '');

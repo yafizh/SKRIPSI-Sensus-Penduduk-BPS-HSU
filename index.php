@@ -52,6 +52,14 @@ if (!isset($_SESSION['user']))
         <?php if (isset($_SESSION['user']['id_petugas'])) : ?>
             <?php
             if (isset($_GET['page'])) {
+                if ($_GET['action'] == 'penduduk')
+                    include_once('halaman/penduduk/admin/tampil_per_kelurahan.php');
+                elseif ($_GET['action'] == 'tambah')
+                    include_once('halaman/penduduk/admin/tambah.php');
+                elseif ($_GET['action'] == 'ubah')
+                    include_once('halaman/penduduk/admin/ubah.php');
+                elseif ($_GET['action'] == 'hapus')
+                    include_once('halaman/penduduk/admin/hapus.php');
             } else include_once('halaman/dashboard/dashboard_petugas.php');
             ?>
         <?php else : ?>

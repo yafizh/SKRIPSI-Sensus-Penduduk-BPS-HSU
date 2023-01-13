@@ -65,7 +65,7 @@ if ($periode_sensus->num_rows) {
                         <?php $kelurahan_dalam_kecamatan = $koneksi->query("SELECT * FROM `kelurahan/desa` WHERE id_kecamatan=" . $row['id_kecamatan']); ?>
                         <ul id="kecamatan-<?= $row['id_kecamatan']; ?>" class="collapse dropdown-nav">
                             <?php while ($row2 = $kelurahan_dalam_kecamatan->fetch_assoc()) : ?>
-                                <li><a href="#"><?= $row2['nama']; ?></a></li>
+                                <li><a href="?hpenduduk"><?= $row2['status']; ?> <?= $row2['nama']; ?></a></li>
                             <?php endwhile; ?>
                         </ul>
                     </li>
