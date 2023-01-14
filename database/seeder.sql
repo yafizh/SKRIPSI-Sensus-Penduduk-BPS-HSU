@@ -19,6 +19,131 @@ INSERT INTO `pendidikan` (
 (9, 'Strata II'),
 (10, 'Strata III');
 
+INSERT INTO `golongan_darah` (
+    `id`,
+    `nama`
+) VALUES 
+(1, 'A'),
+(2, 'B'),
+(3, 'AB'),
+(4, 'O');
+
+INSERT INTO `status_keluarga` (
+    `id`,
+    `nama`,
+    `tingkat`
+) VALUES 
+(1, 'Kepala Keluarga', 1),
+(2, 'Suami', 2),
+(3, 'Istri', 3),
+(4, 'Anak', 4),
+(5, 'Menantu', 5),
+(6, 'Cucu', 6),
+(7, 'Orang Tua', 7),
+(8, 'Mertua', 8),
+(9, 'Fimili Lain', 9);
+
+INSERT INTO `jenis_pekerjaan` (
+    `id`,
+    `nama`
+) VALUES 
+(1, 'Belum/Tidak Bekerja'),
+(2, 'Mengurus Rumah Tangga'),
+(3, 'Pelajar/Mahasiswa'),
+(4, 'Pensiun'),
+(5, 'Pegawai Negeri Sipil'),
+(6, 'Tentara Nasional Indonesia'),
+(7, 'Kepolisian RI'),
+(8, 'Perdagangan'),
+(9, 'Petani/Pekebun'),
+(10, 'Peternak'),
+(11, 'Nelayan/Perikanan'),
+(12, 'Industri'),
+(13, 'Konstruksi'),
+(14, 'Transportasi'),
+(15, 'Karyawan Swasta'),
+(16, 'Karyawan BUMN'),
+(17, 'Karyawan BUMD'),
+(18, 'Karyawan Honorer'),
+(19, 'Buruh Harian Lepas'),
+(20, 'Buruh Tani/Perkebunan'),
+(21, 'Buruh Nelayan/Perikanan'),
+(22, 'Buruh Peternakan'),
+(23, 'Pembantu Rumah Tangga'),
+(24, 'Tukang Cukur'),
+(25, 'Tukang Listrik'),
+(26, 'Tukang Batu'),
+(27, 'Tukang Kayu'),
+(28, 'Tukang Sol Sepatu'),
+(29, 'Tukang Las/Pandai Besi'),
+(30, 'Tukang Jahit'),
+(31, 'Penata Rambut'),
+(32, 'Penata Rias'),
+(33, 'Penata Busana'),
+(34, 'Mekanik'),
+(35, 'Tukang Gigi'),
+(36, 'Seniman'),
+(37, 'Tabib'),
+(38, 'Paraji'),
+(39, 'Perancang Busana'),
+(40, 'Penterjemah'),
+(41, 'Imam Masjid'),
+(42, 'Pendeta'),
+(43, 'Pastur'),
+(44, 'Wartawan'),
+(45, 'Ustadz/Mubaligh'),
+(46, 'Juru Masak'),
+(47, 'Promotor Acara'),
+(48, 'Anggota DPR RI'),
+(49, 'Anggota DPD'),
+(50, 'Anggota BPK'),
+(51, 'Presiden'),
+(52, 'Wakit Presiden'),
+(53, 'Anggota Mahkaman Konstitusi'),
+(54, 'Anggota Kabinet/Kementerian'),
+(55, 'Duta Besar'),
+(56, 'Gubernur'),
+(57, 'Wakil Gubernur'),
+(58, 'Bupati'),
+(59, 'Wakil Bupati'),
+(60, 'Walikota'),
+(61, 'Wakil Walikota'),
+(62, 'Anggota DPRD Provinsi'),
+(63, 'Anggota DPRD Kab/Kota'),
+(64, 'Dosen'),
+(65, 'Guru'),
+(66, 'Pilot'),
+(67, 'Pengacara'),
+(68, 'Notaris'),
+(69, 'Arsitek'),
+(70, 'Akuntan'),
+(71, 'Konsultan'),
+(72, 'Dokter'),
+(73, 'Bidan'),
+(74, 'Perawat'),
+(75, 'Apoteker'),
+(76, 'Psikiater/Psikolog'),
+(77, 'Penyiar Televisi'),
+(78, 'Penyiar Radio'),
+(79, 'Peluat'),
+(80, 'Peneliti'),
+(81, 'Sopir'),
+(82, 'Pialang'),
+(83, 'Paranormal'),
+(84, 'Pedagang'),
+(85, 'Perangkat Desa'),
+(86, 'Kepala Desa'),
+(87, 'Biarawati');
+
+INSERT INTO `status_perkawinan` (
+    `id`,
+    `nama`
+) VALUES 
+(1, 'Belum Kawin'),
+(2, 'Kawin'),
+(3, 'Cerai Hidup'),
+(4, 'Cerai Mati');
+
 INSERT INTO `agama/kepercayaan` (
     `nama`
 ) VALUES 

@@ -60,8 +60,16 @@ if (!isset($_SESSION['user']))
                             include_once('halaman/penduduk/tampil_per_kartu_keluarga.php');
                         elseif ($_GET['action'] == 'tambah')
                             include_once('halaman/penduduk/tambah.php');
+                        elseif ($_GET['action'] == 'ubah')
+                            include_once('halaman/penduduk/ubah.php');
+                        elseif ($_GET['action'] == 'hapus')
+                            include_once('halaman/penduduk/hapus.php');
                         elseif ($_GET['action'] == 'tambah_anggota_keluarga')
                             include_once('halaman/penduduk/tambah_anggota_keluarga.php');
+                        elseif ($_GET['action'] == 'ubah_anggota_keluarga')
+                            include_once('halaman/penduduk/ubah_anggota_keluarga.php');
+                        elseif ($_GET['action'] == 'hapus_anggota_keluarga')
+                            include_once('halaman/penduduk/hapus_anggota_keluarga.php');
                     }
                 }
             } else include_once('halaman/dashboard/dashboard_petugas.php');
