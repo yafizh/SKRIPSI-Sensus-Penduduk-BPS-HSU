@@ -1,10 +1,10 @@
-INSERT INTO `pengguna` (
+INSERT INTO `db_sensus_penduduk`.`pengguna` (
     `username`,
     `password` 
 ) VALUES 
 ('admin', 'admin');
 
-INSERT INTO `pendidikan` (
+INSERT INTO `db_sensus_penduduk`.`pendidikan` (
     `id`,
     `nama`
 ) VALUES 
@@ -19,7 +19,7 @@ INSERT INTO `pendidikan` (
 (9, 'Strata II'),
 (10, 'Strata III');
 
-INSERT INTO `golongan_darah` (
+INSERT INTO `db_sensus_penduduk`.`golongan_darah` (
     `id`,
     `nama`
 ) VALUES 
@@ -28,7 +28,18 @@ INSERT INTO `golongan_darah` (
 (3, 'AB'),
 (4, 'O');
 
-INSERT INTO `status_keluarga` (
+INSERT INTO `db_sensus_penduduk`.`penyebab_kematian` (
+    `id`,
+    `nama`
+) VALUES 
+(1, 'Sakit Biasa/Usia Tua'),
+(2, 'Wabah Penyakit'),
+(3, 'Kecalakaan'),
+(4, 'Kriminalitas'),
+(5, 'Bunuh Diri'),
+(6, 'Lainnya');
+
+INSERT INTO `db_sensus_penduduk`.`status_keluarga` (
     `id`,
     `nama`,
     `tingkat`
@@ -43,7 +54,7 @@ INSERT INTO `status_keluarga` (
 (8, 'Mertua', 8),
 (9, 'Fimili Lain', 9);
 
-INSERT INTO `jenis_pekerjaan` (
+INSERT INTO `db_sensus_penduduk`.`jenis_pekerjaan` (
     `id`,
     `nama`
 ) VALUES 
@@ -135,7 +146,7 @@ INSERT INTO `jenis_pekerjaan` (
 (86, 'Kepala Desa'),
 (87, 'Biarawati');
 
-INSERT INTO `status_perkawinan` (
+INSERT INTO `db_sensus_penduduk`.`status_perkawinan` (
     `id`,
     `nama`
 ) VALUES 
@@ -144,7 +155,7 @@ INSERT INTO `status_perkawinan` (
 (3, 'Cerai Hidup'),
 (4, 'Cerai Mati');
 
-INSERT INTO `agama/kepercayaan` (
+INSERT INTO `db_sensus_penduduk`.`agama/kepercayaan` (
     `nama`
 ) VALUES 
 ('Islam'),
@@ -154,7 +165,7 @@ INSERT INTO `agama/kepercayaan` (
 ('Budha'),
 ('Konghucu');
 
-INSERT INTO `periode_sensus` (
+INSERT INTO `db_sensus_penduduk`.`periode_sensus` (
     `tahun`,
     `tanggal_mulai`,
     `tanggal_selesai`,
@@ -164,7 +175,7 @@ INSERT INTO `periode_sensus` (
 ('2030', '2030-01-01', '2032-01-01', 'Menunggu'),
 ('2040', '2040-01-01', '2042-01-01', 'Menunggu');
 
-INSERT INTO `kecamatan` (
+INSERT INTO `db_sensus_penduduk`.`kecamatan` (
     `id`,
     `id_periode_sensus`,
     `nama`
@@ -200,7 +211,7 @@ INSERT INTO `kecamatan` (
 (29, 3, 'Sungai Pandan'),
 (30, 3, 'Sungai Tabukan');
 
-INSERT INTO `kelurahan/desa` (
+INSERT INTO `db_sensus_penduduk`.`kelurahan/desa` (
     `id_kecamatan`,
     `nama`,
     `status`
@@ -351,7 +362,7 @@ INSERT INTO `kelurahan/desa` (
 (21, 'Teluk Sari', 'Desa'),
 (21, 'Ujung Murung', 'Desa');
 
-INSERT INTO `pegawai` (
+INSERT INTO `db_sensus_penduduk`.`pegawai` (
     `id_pendidikan`,
     `id_agama/kepercayaan`,
     `nip`,

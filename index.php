@@ -55,21 +55,31 @@ if (!isset($_SESSION['user']))
                 if ($_GET['page'] == 'kecamatan') {
                     if (($_GET['sub_page'] ?? '') == 'kelurahan') {
                         if ($_GET['action'] == 'tampil')
-                            include_once('halaman/penduduk/tampil_per_kelurahan.php');
+                            include_once('halaman/data_sensus/tampil.php');
+                        elseif ($_GET['action'] == 'detail_penduduk')
+                            include_once('halaman/data_sensus/penduduk/tampil_per_kelurahan.php');
+                        elseif ($_GET['action'] == 'detail_kematian')
+                            include_once('halaman/data_sensus/kematian/tampil_per_kelurahan.php');
                         elseif ($_GET['action'] == 'detail_per_anggota_keluarga')
-                            include_once('halaman/penduduk/tampil_per_kartu_keluarga.php');
+                            include_once('halaman/data_sensus/penduduk/tampil_per_kartu_keluarga.php');
                         elseif ($_GET['action'] == 'tambah')
-                            include_once('halaman/penduduk/tambah.php');
+                            include_once('halaman/data_sensus/penduduk/tambah.php');
+                        elseif ($_GET['action'] == 'tambah_kematian')
+                            include_once('halaman/data_sensus/kematian/tambah.php');
+                        elseif ($_GET['action'] == 'ubah_kematian')
+                            include_once('halaman/data_sensus/kematian/ubah.php');
+                        elseif ($_GET['action'] == 'hapus_kematian')
+                            include_once('halaman/data_sensus/kematian/hapus.php');
                         elseif ($_GET['action'] == 'ubah')
-                            include_once('halaman/penduduk/ubah.php');
+                            include_once('halaman/data_sensus/penduduk/ubah.php');
                         elseif ($_GET['action'] == 'hapus')
-                            include_once('halaman/penduduk/hapus.php');
+                            include_once('halaman/data_sensus/penduduk/hapus.php');
                         elseif ($_GET['action'] == 'tambah_anggota_keluarga')
-                            include_once('halaman/penduduk/tambah_anggota_keluarga.php');
+                            include_once('halaman/data_sensus/penduduk/tambah_anggota_keluarga.php');
                         elseif ($_GET['action'] == 'ubah_anggota_keluarga')
-                            include_once('halaman/penduduk/ubah_anggota_keluarga.php');
+                            include_once('halaman/data_sensus/penduduk/ubah_anggota_keluarga.php');
                         elseif ($_GET['action'] == 'hapus_anggota_keluarga')
-                            include_once('halaman/penduduk/hapus_anggota_keluarga.php');
+                            include_once('halaman/data_sensus/penduduk/hapus_anggota_keluarga.php');
                     }
                 }
             } else include_once('halaman/dashboard/dashboard_petugas.php');

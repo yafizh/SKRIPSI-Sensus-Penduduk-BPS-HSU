@@ -19,7 +19,13 @@ if (isset($_SESSION['user']['id_petugas'])) {
                 <div class="col">
                     <div class="title mb-30">
                         <?php if ($_SESSION['user']['id_petugas']) : ?>
-                            <h3>Data Penduduk</h3>
+                            <h3>
+                                <a href="?page=kecamatan&sub_page=kelurahan&action=tampil&id_kecamatan=<?= $kecamatan['id']; ?>&id_kelurahan=<?= $kelurahan['id']; ?>" class="breadcrumb-item">Data Sensus</a>
+                                <span style="color: #5D657B;">/</span>
+                                <a href="?page=kecamatan&sub_page=kelurahan&action=detail_penduduk&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>" class="breadcrumb-item">Data Penduduk</a>
+                                <span style="color: #5D657B;">/</span>
+                                Anggota Keluarga
+                            </h3>
                         <?php else : ?>
                             <h3>
                                 <a href="?page=data_sensus&sub_page=penduduk&action=tampil" class="breadcrumb-item">Data Penduduk</a>
@@ -33,7 +39,7 @@ if (isset($_SESSION['user']['id_petugas'])) {
                 </div>
                 <?php if ($_SESSION['user']['id_petugas']) : ?>
                     <div class="col-auto">
-                        <a href="?page=kecamatan&sub_page=kelurahan&action=tambah&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>" class="btn btn-primary mb-30">Tambah</a>
+                        <a href="?page=kecamatan&sub_page=kelurahan&action=tambah_anggota_keluarga&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>&id_kartu_keluarga=<?= $_GET['id_kartu_keluarga']; ?>" class="btn btn-primary mb-30">Tambah</a>
                     </div>
                 <?php endif; ?>
             </div>
@@ -50,13 +56,13 @@ if (isset($_SESSION['user']['id_petugas'])) {
                                             <h6>No</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Nomor Kartu Keluarga</h6>
+                                            <h6>NIK</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Kepala Keluarga</h6>
+                                            <h6>Nama</h6>
                                         </th>
                                         <th class="text-center">
-                                            <h6>Jumlah Anggota Rumah Tangga (ART)</h6>
+                                            <h6>Status Keluarga</h6>
                                         </th>
                                         <th class="fit">
                                             <h6></h6>
@@ -66,34 +72,25 @@ if (isset($_SESSION['user']['id_petugas'])) {
                                 <?php
                                 $q = "
                                     SELECT 
-                                        kk.*,
-                                        (
-                                            SELECT
-                                                p.nama 
-                                            FROM 
-                                                anggota_keluarga ak 
-                                            INNER JOIN 
-                                                penduduk p  
-                                            ON 
-                                                p.id=ak.id_penduduk 
-                                            INNER JOIN 
-                                                status_keluarga sk 
-                                            ON 
-                                                sk.id=ak.id_status_keluarga 
-                                            WHERE 
-                                                sk.tingkat=1 
-                                                AND 
-                                                ak.id_kartu_keluarga=kk.id 
-                                        ) kepala_keluarga, 
-                                        (SELECT COUNT(*) FROM anggota_keluarga WHERE id_kartu_keluarga=kk.id) AS jumlah 
+                                        p.id,
+                                        p.nik,
+                                        p.nama,
+                                        sk.nama status_keluarga
                                     FROM 
-                                        kartu_keluarga kk  
+                                        anggota_keluarga ak 
+                                    LEFT JOIN 
+                                        penduduk p 
+                                    ON 
+                                        p.id=ak.id_penduduk 
+                                    LEFT JOIN 
+                                        status_keluarga sk 
+                                    ON 
+                                        sk.id=ak.id_status_keluarga 
                                     WHERE 
-                                        kk.`id_kelurahan/desa`=" . $kelurahan['id'] . " 
-                                        AND 
-                                        kk.`id_periode_sensus`=" . $periode_sensus['id'] . " 
+                                        ak.id_kartu_keluarga=" . $_GET['id_kartu_keluarga'] . "
                                     ORDER BY 
-                                        kk.nomor_kartu_keluarga";
+                                        sk.tingkat
+                                ";
                                 $result = $koneksi->query($q);
                                 $no = 1;
                                 ?>
@@ -105,30 +102,30 @@ if (isset($_SESSION['user']['id_petugas'])) {
                                                     <p><?= $no++; ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['nomor_kartu_keluarga']; ?></p>
+                                                    <p><?= $row['nik']; ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['kepala_keluarga'] ?? 'Kepala Keluarga Belum Ditambahkan'; ?></p>
+                                                    <p><?= $row['nama']; ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['jumlah']; ?></p>
+                                                    <p><?= $row['status_keluarga'] ?? 'Status Keluarga Belum Ditentukan'; ?></p>
                                                 </td>
                                                 <td class="fit">
                                                     <div class="d-flex gap-3">
                                                         <div class="action">
-                                                            <a href="?page=kecamatan&sub_page=kelurahan&action=detail_per_anggota_keluarga&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>&id_kartu_keluarga=<?= $row['id']; ?>" class="text-secondary">
+                                                            <a href="?page=kecamatan&sub_page=kelurahan&action=detail_penduduk&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>&id_penduduk=<?= $row['id']; ?>" class="text-secondary">
                                                                 <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                                                                     <path fill="currentColor" d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z" />
                                                                 </svg>
                                                             </a>
                                                         </div>
                                                         <div class="action">
-                                                            <a href="?page=kecamatan&sub_page=kelurahan&action=ubah&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>&id_kartu_keluarga=<?= $row['id']; ?>" class="text-warning">
+                                                            <a href="?page=kecamatan&sub_page=kelurahan&action=ubah_anggota_keluarga&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>&id_kartu_keluarga=<?= $_GET['id_kartu_keluarga']; ?>&id_penduduk=<?= $row['id']; ?>" class="text-warning">
                                                                 <i class="lni lni-pencil"></i>
                                                             </a>
                                                         </div>
                                                         <div class="action">
-                                                            <a onclick="return confirm('Yakin?')" href="?page=kecamatan&sub_page=kelurahan&action=hapus&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>&id_kartu_keluarga=<?= $row['id']; ?>" class="text-danger">
+                                                            <a onclick="return confirm('Yakin?')" href="?page=kecamatan&sub_page=kelurahan&action=hapus_anggota_keluarga&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>&id_kartu_keluarga=<?= $_GET['id_kartu_keluarga']; ?>&id_penduduk=<?= $row['id']; ?>" class="text-danger">
                                                                 <i class="lni lni-trash-can"></i>
                                                             </a>
                                                         </div>
