@@ -1,4 +1,6 @@
-<?php
+<?php 
+$kelurahan = $koneksi->query("SELECT * FROM `kelurahan/desa` WHERE id=" . $_GET['id_kelurahan'])->fetch_assoc();
+$kecamatan = $koneksi->query("SELECT * FROM kecamatan WHERE id=" . $_GET['id_kecamatan'])->fetch_assoc();
 if (isset($_POST['id_periode_sensus']))
     $periode_sensus = $koneksi->query("SELECT * FROM periode_sensus WHERE id=" . $_POST['id_periode_sensus'])->fetch_all(MYSQLI_ASSOC);
 else
@@ -23,8 +25,8 @@ else
                             <table id="table" class="table">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            <h6></h6>
+                                        <th>
+                                            <h6>Kecamatan <?= $kecamatan['nama']; ?> <?= $kelurahan['status']; ?> <?= $kelurahan['nama']; ?></h6>
                                         </th>
                                         <th class="text-center">
                                             <h6>Jumlah</h6>
@@ -39,7 +41,7 @@ else
                                 $q = "
                                 (SELECT COUNT(*) FROM penduduk WHERE `id_kelurahan/desa`=".$_GET['id_kelurahan'].")
                                 UNION ALL
-                                (SELECT COUNT(*) FROM kelahiran INNER JOIN penduduk ON penduduk.id=kelahiran.id_penduduk WHERE penduduk.`id_kelurahan/desa`=".$_GET['id_kelurahan'].")
+                                (SELECT COUNT(*) FROM kelahiran WHERE `id_kelurahan/desa`=".$_GET['id_kelurahan'].")
                                 UNION ALL
                                 (SELECT COUNT(*) FROM kematian WHERE `id_kelurahan/desa`=".$_GET['id_kelurahan'].")";
 

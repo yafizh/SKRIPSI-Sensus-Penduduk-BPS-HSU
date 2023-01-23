@@ -16,9 +16,9 @@
                         <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="profile-info">
                                 <div class="info">
-                                    <h6>John Doe</h6>
+                                    <h6><?= $_SESSION['user']['nama'] ?? 'ADMIN'; ?></h6>
                                     <div class="image">
-                                        <img src="assets/images/profile/profile-image.png" alt="" />
+                                        <img src="<?= $_SESSION['user']['foto']; ?>"/>
                                     </div>
                                 </div>
                             </div>

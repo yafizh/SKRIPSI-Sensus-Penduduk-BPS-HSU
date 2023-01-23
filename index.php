@@ -60,10 +60,18 @@ if (!isset($_SESSION['user']))
                             include_once('halaman/data_sensus/penduduk/tampil_per_kelurahan.php');
                         elseif ($_GET['action'] == 'detail_kematian')
                             include_once('halaman/data_sensus/kematian/tampil_per_kelurahan.php');
+                        elseif ($_GET['action'] == 'detail_kelahiran')
+                            include_once('halaman/data_sensus/kelahiran/tampil_per_kelurahan.php');
                         elseif ($_GET['action'] == 'detail_per_anggota_keluarga')
                             include_once('halaman/data_sensus/penduduk/tampil_per_kartu_keluarga.php');
                         elseif ($_GET['action'] == 'tambah')
                             include_once('halaman/data_sensus/penduduk/tambah.php');
+                        elseif ($_GET['action'] == 'tambah_kelahiran')
+                            include_once('halaman/data_sensus/kelahiran/tambah.php');
+                        elseif ($_GET['action'] == 'ubah_kelahiran')
+                            include_once('halaman/data_sensus/kelahiran/ubah.php');
+                        elseif ($_GET['action'] == 'hapus_kelahiran')
+                            include_once('halaman/data_sensus/kelahiran/hapus.php');
                         elseif ($_GET['action'] == 'tambah_kematian')
                             include_once('halaman/data_sensus/kematian/tambah.php');
                         elseif ($_GET['action'] == 'ubah_kematian')
