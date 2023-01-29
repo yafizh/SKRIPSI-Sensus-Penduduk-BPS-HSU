@@ -248,6 +248,10 @@ if (!isset($_SESSION['user']))
                         elseif ($_GET['action'] == 'hapus')
                             include_once('halaman/penduduk/hapus.php');
                     }
+                } elseif ($_GET['page'] == 'laporan') {
+                    if (($_GET['sub_page'] ?? '') == 'kecamatan') {
+                        include_once('halaman/laporan/kecamatan.php');
+                    }
                 }
             } else include_once('halaman/dashboard/dashboard.php');
             ?>

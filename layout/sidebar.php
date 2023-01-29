@@ -106,7 +106,7 @@
                     <li><a href="?page=petugas&sub_page=petugas_kelurahan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'petugas_kelurahan' ? 'active' : ''; ?>">Petugas Kelurahan/Desa</a></li>
                 </ul>
             </li>
-            <li class="nav-item nav-item-has-children <?= ($_GET['page'] ?? '') == 'data_sensus' ? 'active' : ''; ?>">
+            <!-- <li class="nav-item nav-item-has-children <?= ($_GET['page'] ?? '') == 'data_sensus' ? 'active' : ''; ?>">
                 <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#data-sensus" aria-controls="data-sensus" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -122,7 +122,7 @@
                     <li><a href="#">Pendidikan</a></li>
                     <li><a href="#">Tenaga Kerja</a></li>
                 </ul>
-            </li>
+            </li> -->
             <span class="divider">
                 <br>
                 <h6>Laporan</h6>
@@ -137,7 +137,6 @@
                     <span class="text">Laporan</span>
                 </a>
                 <ul id="laporan" class="collapse dropdown-nav <?= ($_GET['page'] ?? '') == 'laporan' ? 'show' : ''; ?>">
-                    <li><a href="?page=laporan&sub_page=pegawai&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'pegawai' ? 'active' : ''; ?>">Pegawai</a></li>
                     <li><a href="?page=laporan&sub_page=kecamatan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'kecamatan' ? 'active' : ''; ?>">Kecamatan</a></li>
                     <li><a href="#">Kelurahan/Desa</a></li>
                     <li><a href="#">Petugas Kecamatan</a></li>
