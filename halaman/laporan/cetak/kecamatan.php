@@ -90,29 +90,29 @@
                 <?php if ($result->num_rows) : ?>
                     <?php while ($row = $result->fetch_assoc()) : ?>
                         <tr>
-                            <td class="text-center fit">
-                                <p><?= $no++; ?></p>
+                            <td class="text-center align-middle fit">
+                                <p class="m-0"><?= $no++; ?></p>
                             </td>
-                            <td class="text-center">
-                                <p><?= $row['tahun']; ?></p>
+                            <td class="text-center align-middle">
+                                <p class="m-0"><?= $row['tahun']; ?></p>
                             </td>
-                            <td class="text-center">
-                                <p><?= $row['nama']; ?></p>
+                            <td class="text-center align-middle">
+                                <p class="m-0"><?= $row['nama']; ?></p>
                             </td>
-                            <td class="text-center">
-                                <p><?= $row['jumlah_petugas']; ?></p>
+                            <td class="text-center align-middle">
+                                <p class="m-0"><?= $row['jumlah_petugas']; ?></p>
                             </td>
-                            <td class="text-center">
-                                <p><?= $row['jumlah_kelurahan']; ?></p>
+                            <td class="text-center align-middle">
+                                <p class="m-0"><?= $row['jumlah_kelurahan']; ?></p>
                             </td>
-                            <td class="text-center">
-                                <p><?= $row['jumlah_penduduk']; ?></p>
+                            <td class="text-center align-middle">
+                                <p class="m-0"><?= $row['jumlah_penduduk']; ?></p>
                             </td>
-                            <td class="text-center">
-                                <p><?= $row['jumlah_kematian']; ?></p>
+                            <td class="text-center align-middle">
+                                <p class="m-0"><?= $row['jumlah_kematian']; ?></p>
                             </td>
-                            <td class="text-center">
-                                <p><?= $row['jumlah_kelahiran']; ?></p>
+                            <td class="text-center align-middle">
+                                <p class="m-0"><?= $row['jumlah_kelahiran']; ?></p>
                             </td>
                         </tr>
                     <?php endwhile; ?>
