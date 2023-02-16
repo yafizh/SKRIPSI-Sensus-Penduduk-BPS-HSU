@@ -133,7 +133,7 @@ if (isset($_POST['tambah'])) {
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="input-style-1">
-                                        <label>Tanggal</label>
+                                        <label>Waktu</label>
                                         <input type="time" required autocomplete="off" class="bg-transparent" name="waktu" value="<?= Date("H:i"); ?>" />
                                     </div>
                                 </div>

@@ -89,7 +89,7 @@ if (isset($_SESSION['user']['id_petugas'])) {
                                     WHERE 
                                         ak.id_kartu_keluarga=" . $_GET['id_kartu_keluarga'] . "
                                     ORDER BY 
-                                        sk.tingkat
+                                        sk.tingkat IS NULL, sk.tingkat
                                 ";
                                 $result = $koneksi->query($q);
                                 $no = 1;
