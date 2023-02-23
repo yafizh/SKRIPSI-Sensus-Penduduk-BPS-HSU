@@ -275,9 +275,14 @@ if (!isset($_SESSION['user']))
                             include_once('halaman/penduduk/hapus.php');
                     }
                 } elseif ($_GET['page'] == 'laporan') {
-                    if (($_GET['sub_page'] ?? '') == 'kecamatan') {
+                    if (($_GET['sub_page'] ?? '') == 'kecamatan')
                         include_once('halaman/laporan/kecamatan.php');
-                    }
+                    elseif (($_GET['sub_page'] ?? '') == 'kelurahan')
+                        include_once('halaman/laporan/kelurahan.php');
+                    elseif (($_GET['sub_page'] ?? '') == 'petugas_kecamatan')
+                        include_once('halaman/laporan/petugas_kecamatan.php');
+                    elseif (($_GET['sub_page'] ?? '') == 'petugas_kelurahan')
+                        include_once('halaman/laporan/petugas_kelurahan.php');
                 }
             } else include_once('halaman/dashboard/dashboard.php');
             ?>

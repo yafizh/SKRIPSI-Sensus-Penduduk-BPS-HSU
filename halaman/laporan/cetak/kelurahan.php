@@ -11,7 +11,7 @@
 
 <body>
     <?php include_once('header.php'); ?>
-    <h4 class="text-center my-3">Laporan Kecamatan</h4>
+    <h4 class="text-center my-3">Laporan Kelurahan/Desa</h4>
     <?php if (isset($_GET['id_periode_sensus'])) : ?>
         <?php $periode_sensus = $koneksi->query("SELECT * FROM periode_sensus WHERE id=" . $_GET['id_periode_sensus'])->fetch_assoc();  ?>
         <section class="p-3">
@@ -38,7 +38,7 @@
                         <h6>Periode Sensus</h6>
                     </th>
                     <th rowspan="2" class="text-center align-middle">
-                        <h6>Nama Kecamatan</h6>
+                        <h6>Nama Kelurahan/Desa</h6>
                     </th>
                     <th class="text-center align-middle" colspan="5">
                         Jumlah
@@ -47,9 +47,6 @@
                 <tr>
                     <th class="text-center align-middle">
                         <h6>Petugas</h6>
-                    </th>
-                    <th class="text-center align-middle">
-                        <h6>Kelurahan/Desa</h6>
                     </th>
                     <th class="text-center align-middle">
                         <h6>Penduduk</h6>
@@ -64,20 +61,23 @@
             </thead>
             <?php
             $q = "
-            SELECT 
-                kecamatan.*,
-                periode_sensus.tahun,
-                (SELECT IFNULL(COUNT(*), 0) FROM petugas_kecamatan WHERE id_kecamatan=kecamatan.id) jumlah_petugas,
-                (SELECT IFNULL(COUNT(*), 0) FROM `kelurahan/desa` WHERE id_kecamatan=kecamatan.id) jumlah_kelurahan,
-                (SELECT IFNULL(COUNT(*), 0) FROM penduduk INNER JOIN `kelurahan/desa` ON `kelurahan/desa`.id=penduduk.`id_kelurahan/desa` WHERE `kelurahan/desa`.id_kecamatan=kecamatan.id) jumlah_penduduk, 
-                (SELECT IFNULL(COUNT(*), 0) FROM kelahiran INNER JOIN `kelurahan/desa` ON `kelurahan/desa`.id=kelahiran.`id_kelurahan/desa` WHERE `kelurahan/desa`.id_kecamatan=kecamatan.id) jumlah_kelahiran, 
-                (SELECT IFNULL(COUNT(*), 0) FROM kematian INNER JOIN `kelurahan/desa` ON `kelurahan/desa`.id=kematian.`id_kelurahan/desa` WHERE `kelurahan/desa`.id_kecamatan=kecamatan.id) jumlah_kematian 
-            FROM 
-                kecamatan 
-            INNER JOIN 
-                periode_sensus 
-            ON 
-                periode_sensus.id=kecamatan.id_periode_sensus";
+                SELECT 
+                    `kelurahan/desa`.*,
+                    periode_sensus.tahun,
+                    (SELECT IFNULL(COUNT(*), 0) FROM `petugas_kelurahan/desa` WHERE `id_kelurahan/desa`=`kelurahan/desa`.id) jumlah_petugas,
+                    (SELECT IFNULL(COUNT(*), 0) FROM penduduk WHERE `id_kelurahan/desa`=`kelurahan/desa`.id) jumlah_penduduk, 
+                    (SELECT IFNULL(COUNT(*), 0) FROM kelahiran WHERE `id_kelurahan/desa`=`kelurahan/desa`.id) jumlah_kelahiran, 
+                    (SELECT IFNULL(COUNT(*), 0) FROM kematian WHERE `id_kelurahan/desa`=`kelurahan/desa`.id) jumlah_kematian 
+                FROM 
+                    `kelurahan/desa` 
+                INNER JOIN 
+                    kecamatan 
+                ON 
+                    kecamatan.id=`kelurahan/desa`.id_kecamatan 
+                INNER JOIN 
+                    periode_sensus 
+                ON 
+                    periode_sensus.id=kecamatan.id_periode_sensus";
 
             if (isset($_GET['id_periode_sensus']))
                 $q .= " WHERE periode_sensus.id=" . $_GET['id_periode_sensus'];
@@ -101,9 +101,6 @@
                             </td>
                             <td class="text-center align-middle">
                                 <p class="m-0"><?= $row['jumlah_petugas']; ?></p>
-                            </td>
-                            <td class="text-center align-middle">
-                                <p class="m-0"><?= $row['jumlah_kelurahan']; ?></p>
                             </td>
                             <td class="text-center align-middle">
                                 <p class="m-0"><?= $row['jumlah_penduduk']; ?></p>

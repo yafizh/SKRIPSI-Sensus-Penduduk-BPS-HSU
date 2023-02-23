@@ -138,9 +138,9 @@
                 </a>
                 <ul id="laporan" class="collapse dropdown-nav <?= ($_GET['page'] ?? '') == 'laporan' ? 'show' : ''; ?>">
                     <li><a href="?page=laporan&sub_page=kecamatan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'kecamatan' ? 'active' : ''; ?>">Kecamatan</a></li>
-                    <li><a href="#">Kelurahan/Desa</a></li>
-                    <li><a href="#">Petugas Kecamatan</a></li>
-                    <li><a href="#">Petugas Kelurahan/Desa</a></li>
+                    <li><a href="?page=laporan&sub_page=kelurahan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'kelurahan' ? 'active' : ''; ?>">Kelurahan/Desa</a></li>
+                    <li><a href="?page=laporan&sub_page=petugas_kecamatan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'petugas_kecamatan' ? 'active' : ''; ?>">Petugas Kecamatan</a></li>
+                    <li><a href="?page=laporan&sub_page=petugas_kelurahan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'petugas_kelurahan' ? 'active' : ''; ?>">Petugas Kelurahan/Desa</a></li>
                     <li><a href="#">Grafik Penduduk</a></li>
                     <li><a href="#">Grafik Kematian</a></li>
                     <li><a href="#">Grafik Pendidikan</a></li>

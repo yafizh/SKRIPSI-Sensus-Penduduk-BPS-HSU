@@ -25,8 +25,10 @@ if ($periode_sensus->num_rows) {
 
     $q = "
         SELECT 
+            kd.id_kecamatan id_kecamatan,
             kd.id id_kelurahan,
-            kd.nama 
+            kd.nama,
+            kd.status 
         FROM 
             `petugas_kelurahan/desa` pkd 
         INNER JOIN 
@@ -77,7 +79,7 @@ if ($periode_sensus->num_rows) {
                     <h6>Kelurahan/Desa</h6>
                 </span>
                 <?php while ($row = $kelurahan->fetch_assoc()) : ?>
-                    <li class="nav-item"><a href="#"><span class="text"><?= $row['nama']; ?></span></a></li>
+                    <li class="nav-item <?= (($_GET['sub_page'] ?? '') == 'kelurahan') && (($_GET['id_kelurahan'] ?? '') == $row['id_kelurahan']) ? 'active' : ''; ?>"><a href="?page=kecamatan&sub_page=kelurahan&action=tampil&id_kecamatan=<?= $row['id_kecamatan']; ?>&id_kelurahan=<?= $row['id_kelurahan']; ?>"><?= $row['status']; ?> <?= $row['nama']; ?></a></li>
                 <?php endwhile; ?>
             <?php endif; ?>
         </ul>

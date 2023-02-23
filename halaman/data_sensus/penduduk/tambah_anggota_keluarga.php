@@ -75,7 +75,7 @@ if (isset($_POST['tambah'])) {
         ) VALUES (
             " . $_GET['id_kartu_keluarga'] . ",
             " . $koneksi->insert_id . ",
-            " . (empty($id_status_kelaurga) ? 'NULL' : $id_status_kelaurga) . " 
+            " . (empty($id_status_keluarga) ? 'NULL' : $id_status_keluarga) . " 
         )";
         $koneksi->query($q);
 

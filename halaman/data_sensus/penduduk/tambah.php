@@ -28,7 +28,7 @@ if (isset($_POST['tambah'])) {
         )
     ";
     if ($koneksi->query($q))
-        echo "<script>location.href = '?page=kecamatan&sub_page=kelurahan&action=tampil&id_kecamatan=" . $_GET['id_kecamatan'] . "&id_kelurahan=" . $_GET['id_kelurahan'] . "';</script>";
+        echo "<script>location.href = '?page=kecamatan&sub_page=kelurahan&action=detail_penduduk&id_kecamatan=" . $_GET['id_kecamatan'] . "&id_kelurahan=" . $_GET['id_kelurahan'] . "';</script>";
     else die($koneksi->error);
 }
 ?>
@@ -99,7 +99,7 @@ if (isset($_POST['tambah'])) {
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between">
-                                    <a href="?page=kecamatan&sub_page=kelurahan&action=tampil&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>" class="main-btn btn-sm secondary-btn btn-hover">Kembali</a>
+                                    <a href="?page=kecamatan&sub_page=kelurahan&action=detail_penduduk&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>" class="main-btn btn-sm secondary-btn btn-hover">Kembali</a>
                                     <button name="tambah" class="main-btn btn-sm primary-btn btn-hover">Tambah</button>
                                 </div>
                             </div>
