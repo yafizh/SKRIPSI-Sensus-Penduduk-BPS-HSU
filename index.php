@@ -23,6 +23,32 @@ if (!isset($_SESSION['user']))
     <link rel="stylesheet" href="assets/css/datatable.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
 
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        .select2-container .select2-selection--single {
+            box-sizing: border-box;
+            cursor: pointer;
+            display: block;
+            /* height: 28px; */
+            height: 38px;
+            user-select: none;
+            -webkit-user-select: none;
+            opacity: .55;
+            width: 34vw;
+        }
+
+        .select2-container .select2-selection--single .select2-selection__rendered {
+            display: block;
+            padding-left: 8px;
+            padding-top: 4px;
+            padding-right: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: black !important;
+        }
+    </style>
     <style>
         .fit {
             width: 1%;

@@ -1,7 +1,9 @@
 <?php
 $kecamatan = $koneksi->query("SELECT * FROM kecamatan WHERE id=" . $_GET['id_kecamatan'])->fetch_assoc();
 $kelurahan = $koneksi->query("SELECT * FROM `kelurahan/desa` WHERE id=" . $_GET['id_kelurahan'])->fetch_assoc();
+$penduduk = $koneksi->query("SELECT p.*, a.nama agama FROM penduduk p INNER JOIN `agama/kepercayaan` a ON a.id=p.`id_agama/kepercayaan` WHERE `id_kelurahan/desa`=" . $kelurahan['id']);
 if (isset($_POST['tambah'])) {
+    $id_penduduk = $koneksi->real_escape_string($_POST['id_penduduk']);
     $nik = $koneksi->real_escape_string($_POST['nik']);
     $nama = $koneksi->real_escape_string($_POST['nama']);
     $jenis_kelamin = $koneksi->real_escape_string($_POST['jenis_kelamin']);
@@ -10,6 +12,7 @@ if (isset($_POST['tambah'])) {
     $tanggal = $koneksi->real_escape_string($_POST['tanggal']);
     $waktu = $koneksi->real_escape_string($_POST['waktu']);
 
+    $koneksi->query("DELETE FROM penduduk WHERE id=$id_penduduk");
     $q = "
         INSERT INTO kematian (
             `id_kelurahan/desa`,
@@ -73,28 +76,39 @@ if (isset($_POST['tambah'])) {
                         <div class="card-style mb-30">
                             <div class="row">
                                 <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Penduduk</label>
+                                        <select class="form-control select" name="id_penduduk" id="exampleFormControlSelect1" required>
+                                            <option value="" selected disabled>Pilih Penduduk</option>
+                                            <?php while ($row = $penduduk->fetch_assoc()) : ?>
+                                                <option data-nik="<?= $row['nik']; ?>" data-nama="<?= $row['nama']; ?>" data-jenis_kelamin="<?= $row['jenis_kelamin']; ?>" data-agama="<?= $row['agama']; ?>" data-id_agama="<?= $row['id_agama/kepercayaan']; ?>" value="<?= $row['id']; ?>"><?= $row['nik']; ?> | <?= $row['nama']; ?></option>
+                                            <?php endwhile; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12">
                                     <div class="input-style-1">
                                         <label>NIK</label>
-                                        <input type="text" required autocomplete="off" autofocus class="bg-transparent" name="nik" />
+                                        <input type="text" required readonly autocomplete="off" name="nik" />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-style-1">
                                         <label>Nama</label>
-                                        <input type="text" required autocomplete="off" class="bg-transparent" name="nama" />
+                                        <input type="text" required readonly autocomplete="off" name="nama" />
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <label class="text-dark mb-1">Jenis Kelamin</label>
-                                    <div class="form-check radio-style radio-primary mb-20">
-                                        <input class="form-check-input" type="radio" value="Laki - Laki" required name="jenis_kelamin" id="male" />
-                                        <label class="form-check-label" for="male">
-                                            Laki - Laki</label>
+                                    <div class="input-style-1">
+                                        <label>Jenis Kelamin</label>
+                                        <input type="text" required readonly autocomplete="off" name="jenis_kelamin" />
                                     </div>
-                                    <div class="form-check radio-style radio-primary mb-20">
-                                        <input class="form-check-input" type="radio" value="Perempuan" required name="jenis_kelamin" id="female" />
-                                        <label class="form-check-label" for="female">
-                                            Perempuan</label>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-style-1">
+                                        <label>Agama/Keyakinan</label>
+                                        <input type="text" hidden name="id_agama" />
+                                        <input type="text" required readonly autocomplete="off" name="agama" />
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -111,20 +125,6 @@ if (isset($_POST['tambah'])) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <?php $agama = $koneksi->query("SELECT * FROM `agama/kepercayaan` ORDER BY nama"); ?>
-                                    <div class="select-style-1">
-                                        <label>Agama/Kepercayaan</label>
-                                        <div class="select-position">
-                                            <select name="id_agama">
-                                                <option value="" selected disabled>Pilih Agama/Kepercayaan</option>
-                                                <?php while ($row = $agama->fetch_assoc()) : ?>
-                                                    <option value="<?= $row['id']; ?>"><?= $row['nama']; ?></option>
-                                                <?php endwhile; ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="input-style-1">
                                         <label>Tanggal</label>
@@ -133,7 +133,7 @@ if (isset($_POST['tambah'])) {
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="input-style-1">
-                                        <label>Tanggal</label>
+                                        <label>Waktu</label>
                                         <input type="time" required autocomplete="off" class="bg-transparent" name="waktu" value="<?= Date("H:i"); ?>" />
                                     </div>
                                 </div>
@@ -150,3 +150,13 @@ if (isset($_POST['tambah'])) {
     </div>
 </section>
 <?php include_once('layout/js.php'); ?>
+<script>
+    const select = $(".select").select2();
+    select.on('select2:select', function(element) {
+        $("input[name=nik]").val(element.currentTarget[element.currentTarget.selectedIndex].getAttribute('data-nik'));
+        $("input[name=nama]").val(element.currentTarget[element.currentTarget.selectedIndex].getAttribute('data-nama'));
+        $("input[name=jenis_kelamin]").val(element.currentTarget[element.currentTarget.selectedIndex].getAttribute('data-jenis_kelamin'));
+        $("input[name=agama]").val(element.currentTarget[element.currentTarget.selectedIndex].getAttribute('data-agama'));
+        $("input[name=id_agama]").val(element.currentTarget[element.currentTarget.selectedIndex].getAttribute('data-id_agama'));
+    });
+</script>
