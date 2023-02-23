@@ -283,6 +283,8 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/laporan/petugas_kecamatan.php');
                     elseif (($_GET['sub_page'] ?? '') == 'petugas_kelurahan')
                         include_once('halaman/laporan/petugas_kelurahan.php');
+                    elseif (($_GET['sub_page'] ?? '') == 'grafik_penduduk')
+                        include_once('halaman/laporan/grafik_penduduk.php');
                 }
             } else include_once('halaman/dashboard/dashboard.php');
             ?>

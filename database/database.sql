@@ -187,15 +187,11 @@ CREATE TABLE `db_sensus_penduduk`.`penduduk`(
 
 CREATE TABLE `db_sensus_penduduk`.`kelahiran`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
+    `id_penduduk` BIGINT UNSIGNED,
     `id_kelurahan/desa` BIGINT UNSIGNED,
     `id_periode_sensus` BIGINT UNSIGNED,
-    `nama` VARCHAR(255),
-    `tempat_lahir` VARCHAR(255),
-    `tanggal_lahir` DATE,
-    `waktu_lahir` TIME,
-    `jenis_kelamin` VARCHAR(255),
-    `status` VARCHAR(255),
     PRIMARY KEY(`id`),
+    FOREIGN KEY (`id_penduduk`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`id_kelurahan/desa`) REFERENCES `kelurahan/desa` (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`id_periode_sensus`) REFERENCES `periode_sensus` (`id`) ON DELETE CASCADE 
 );

@@ -35,11 +35,11 @@ if (isset($_SESSION['user']['id_petugas'])) {
                         <?php endif; ?>
                     </div>
                 </div>
-                <?php if ($_SESSION['user']['id_petugas']) : ?>
+                <!-- <?php if ($_SESSION['user']['id_petugas']) : ?>
                     <div class="col-auto">
                         <a href="?page=kecamatan&sub_page=kelurahan&action=tambah_kelahiran&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>" class="btn btn-primary mb-30">Tambah</a>
                     </div>
-                <?php endif; ?>
+                <?php endif; ?> -->
             </div>
         </div>
         <div class="tables-wrapper">
@@ -65,9 +65,6 @@ if (isset($_SESSION['user']['id_petugas'])) {
                                         <th class="text-center">
                                             <h6>Jenis Kelamin</h6>
                                         </th>
-                                        <th class="text-center">
-                                            <h6>Status Kelahiran</h6>
-                                        </th>
                                         <th class="fit">
                                             <h6></h6>
                                         </th>
@@ -76,15 +73,29 @@ if (isset($_SESSION['user']['id_petugas'])) {
                                 <?php
                                 $q = "
                                     SELECT 
-                                        *
+                                        k.*,
+                                        p.nama,
+                                        p.tempat_lahir, 
+                                        p.tanggal_lahir, 
+                                        p.jenis_kelamin,
+                                        p.id id_penduduk,
+                                        ak.id_kartu_keluarga 
                                     FROM 
-                                        kelahiran  
+                                        kelahiran k 
+                                    INNER JOIN 
+                                        penduduk p
+                                    ON 
+                                        p.id=k.id_penduduk 
+                                    INNER JOIN 
+                                        anggota_keluarga ak
+                                    ON 
+                                        p.id=ak.id_penduduk
                                     WHERE 
-                                        `id_kelurahan/desa`=" . $kelurahan['id'] . " 
+                                        k.`id_kelurahan/desa`=" . $kelurahan['id'] . " 
                                         AND 
-                                        `id_periode_sensus`=" . $periode_sensus['id'] . " 
+                                        k.`id_periode_sensus`=" . $periode_sensus['id'] . " 
                                     ORDER BY 
-                                        nama";
+                                        k.id DESC";
                                 $result = $koneksi->query($q);
                                 $no = 1;
                                 ?>
@@ -107,13 +118,10 @@ if (isset($_SESSION['user']['id_petugas'])) {
                                                 <td class="text-center">
                                                     <p><?= $row['jenis_kelamin']; ?></p>
                                                 </td>
-                                                <td class="text-center">
-                                                    <p><?= $row['status']; ?></p>
-                                                </td>
                                                 <td class="fit">
                                                     <div class="d-flex gap-3">
                                                         <div class="action">
-                                                            <a href="?page=kecamatan&sub_page=kelurahan&action=ubah_kelahiran&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>&id=<?= $row['id']; ?>" class="text-warning">
+                                                            <a href="?page=kecamatan&sub_page=kelurahan&action=ubah_anggota_keluarga&id_kecamatan=<?= $_GET['id_kecamatan']; ?>&id_kelurahan=<?= $_GET['id_kelurahan']; ?>&id_penduduk=<?= $row['id_penduduk']; ?>&id_kartu_keluarga=<?= $row['id_kartu_keluarga']; ?>&kelahiran=1" class="text-warning">
                                                                 <i class="lni lni-pencil"></i>
                                                             </a>
                                                         </div>
@@ -128,7 +136,7 @@ if (isset($_SESSION['user']['id_petugas'])) {
                                         <?php endwhile; ?>
                                     <?php else : ?>
                                         <tr>
-                                            <td class="text-center" colspan="7">Data Kosong</td>
+                                            <td class="text-center" colspan="6">Data Kosong</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>

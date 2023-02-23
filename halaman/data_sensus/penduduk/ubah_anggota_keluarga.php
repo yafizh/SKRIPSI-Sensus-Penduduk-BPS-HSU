@@ -2,7 +2,8 @@
 $q = "
     SELECT 
         p.*,
-        ak.id_status_keluarga 
+        ak.id_status_keluarga,
+        (SELECT id FROM kelahiran WHERE id_penduduk=p.id) baru_lahir
     FROM 
         penduduk p 
     INNER JOIN 
@@ -69,8 +70,29 @@ if (isset($_POST['edit'])) {
             id=" . $kartu_keluarga['id'];
         $koneksi->query($q);
 
+        if (($_POST['kelahiran'] ?? false) && !isset($_GET['kelahiran'])) {
+            $q = "
+                INSERT INTO kelahiran (
+                    `id_penduduk`,
+                    `id_kelurahan/desa`,
+                    `id_periode_sensus`
+                ) VALUES (
+                    '" . $_GET['id_penduduk'] . "',
+                    '" . $_GET['id_kelurahan'] . "',
+                    '" . $kecamatan['id_periode_sensus'] . "'
+                )
+            ";
+            $koneksi->query($q);
+        }
+
+        if (($_POST['kelahiran'] ?? false) === false)
+            $koneksi->query("DELETE FROM kelahiran WHERE id_penduduk=" . $_GET['id_penduduk']);
+
         $koneksi->commit();
-        echo "<script>location.href = '?page=kecamatan&sub_page=kelurahan&action=detail_per_anggota_keluarga&id_kecamatan=" . $_GET['id_kecamatan'] . "&id_kelurahan=" . $_GET['id_kelurahan'] . "&id_kartu_keluarga=" . $_GET['id_kartu_keluarga'] . "';</script>";
+        if (isset($_GET['kelahiran']))
+            echo "<script>location.href = '?page=kecamatan&sub_page=kelurahan&action=detail_kelahiran&id_kecamatan=" . $_GET['id_kecamatan'] . "&id_kelurahan=" . $_GET['id_kelurahan'] . "';</script>";
+        else
+            echo "<script>location.href = '?page=kecamatan&sub_page=kelurahan&action=detail_per_anggota_keluarga&id_kecamatan=" . $_GET['id_kecamatan'] . "&id_kelurahan=" . $_GET['id_kelurahan'] . "&id_kartu_keluarga=" . $_GET['id_kartu_keluarga'] . "';</script>";
     } catch (\Throwable $e) {
         $koneksi->rollback();
         throw $e;
@@ -325,6 +347,12 @@ if (isset($_POST['edit'])) {
                                     <div class="input-style-1">
                                         <label>Alamat Sekarang</label>
                                         <textarea name="alamat_sekarang" class="bg-transparent" autocomplete="off"><?= $data['alamat_sekarang']; ?></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-5">
+                                    <div class="form-check checkbox-style mb-20">
+                                        <input class="form-check-input" type="checkbox" value="1" id="checkbox-1" <?= (isset($_GET['kelahiran']) || !is_null($data['baru_lahir'])) ? 'checked' : ''; ?> name="kelahiran">
+                                        <label class="form-check-label" for="checkbox-1">Baru Lahir?</label>
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between">

@@ -67,6 +67,23 @@ if (isset($_POST['tambah'])) {
         ";
         $koneksi->query($q);
 
+        $id_penduduk = $koneksi->insert_id;
+
+        if ($_POST['kelahiran'] ?? false) {
+            $q = "
+                INSERT INTO kelahiran (
+                    `id_penduduk`,
+                    `id_kelurahan/desa`,
+                    `id_periode_sensus`
+                ) VALUES (
+                    '" . $id_penduduk . "',
+                    '" . $_GET['id_kelurahan'] . "',
+                    '" . $kecamatan['id_periode_sensus'] . "'
+                )
+            ";
+            $koneksi->query($q);
+        }
+
         $q = "
         INSERT INTO `anggota_keluarga` (
             id_kartu_keluarga, 
@@ -74,7 +91,7 @@ if (isset($_POST['tambah'])) {
             id_status_keluarga  
         ) VALUES (
             " . $_GET['id_kartu_keluarga'] . ",
-            " . $koneksi->insert_id . ",
+            " . $id_penduduk . ",
             " . (empty($id_status_keluarga) ? 'NULL' : $id_status_keluarga) . " 
         )";
         $koneksi->query($q);
@@ -333,6 +350,18 @@ if (isset($_POST['tambah'])) {
                                     <div class="input-style-1">
                                         <label>Alamat Sekarang</label>
                                         <textarea name="alamat_sekarang" class="bg-transparent" autocomplete="off"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-style-1">
+                                        <label>Alamat Sekarang</label>
+                                        <textarea name="alamat_sekarang" class="bg-transparent" autocomplete="off"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-5">
+                                    <div class="form-check checkbox-style mb-20">
+                                        <input class="form-check-input" type="checkbox" value="1" id="checkbox-1" name="kelahiran">
+                                        <label class="form-check-label" for="checkbox-1">Baru Lahir?</label>
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between">

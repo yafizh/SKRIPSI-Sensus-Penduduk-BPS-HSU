@@ -141,7 +141,7 @@
                     <li><a href="?page=laporan&sub_page=kelurahan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'kelurahan' ? 'active' : ''; ?>">Kelurahan/Desa</a></li>
                     <li><a href="?page=laporan&sub_page=petugas_kecamatan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'petugas_kecamatan' ? 'active' : ''; ?>">Petugas Kecamatan</a></li>
                     <li><a href="?page=laporan&sub_page=petugas_kelurahan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'petugas_kelurahan' ? 'active' : ''; ?>">Petugas Kelurahan/Desa</a></li>
-                    <li><a href="#">Grafik Penduduk</a></li>
+                    <li><a href="?page=laporan&sub_page=grafik_penduduk&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'grafik_penduduk' ? 'active' : ''; ?>">Grafik Penduduk</a></li>
                     <li><a href="#">Grafik Kematian</a></li>
                     <li><a href="#">Grafik Pendidikan</a></li>
                     <li><a href="#">Grafik Kelahiran</a></li>
