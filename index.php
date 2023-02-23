@@ -285,6 +285,14 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/laporan/petugas_kelurahan.php');
                     elseif (($_GET['sub_page'] ?? '') == 'grafik_penduduk')
                         include_once('halaman/laporan/grafik_penduduk.php');
+                    elseif (($_GET['sub_page'] ?? '') == 'grafik_kematian')
+                        include_once('halaman/laporan/grafik_kematian.php');
+                    elseif (($_GET['sub_page'] ?? '') == 'grafik_pendidikan')
+                        include_once('halaman/laporan/grafik_pendidikan.php');
+                    elseif (($_GET['sub_page'] ?? '') == 'grafik_kelahiran')
+                        include_once('halaman/laporan/grafik_kelahiran.php');
+                    elseif (($_GET['sub_page'] ?? '') == 'grafik_tenaga_kerja')
+                        include_once('halaman/laporan/grafik_tenaga_kerja.php');
                 }
             } else include_once('halaman/dashboard/dashboard.php');
             ?>
