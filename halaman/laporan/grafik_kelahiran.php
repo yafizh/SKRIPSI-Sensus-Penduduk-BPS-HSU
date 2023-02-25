@@ -75,7 +75,7 @@
                                     <button name="submit" class="main-btn btn-sm primary-btn btn-hover">Filter</button>
                                     <?php if (isset($_POST['dari_periode_sensus']) && isset($_POST['sampai_periode_sensus'])) : ?>
                                         <?php
-                                        $link = "halaman/laporan/cetak/kecamatan.php?dari_periode_sensus=" . ($_POST['dari_periode_sensus'] ?? '') . "&sampai_periode_sensus=" . ($_POST['dari_periode_sensus'] ?? '');
+                                        $link = "halaman/laporan/cetak/grafik_kelahiran.php?dari_periode_sensus=" . ($_POST['dari_periode_sensus'] ?? '') . "&sampai_periode_sensus=" . ($_POST['sampai_periode_sensus'] ?? '');
                                         if (isset($_POST['kecamatan']))
                                             $link .= "&kecamatan=" . $_POST['kecamatan'];
                                         if (isset($_POST['kelurahan']))

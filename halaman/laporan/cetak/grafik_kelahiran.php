@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laporan Grafik Penduduk</title>
+    <title>Laporan Grafik Kelahiran</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="shortcut icon" href="../../../assets/images/logo/logo.jpg" type="image/x-icon" />
 </head>
 
 <body>
     <?php include_once('header.php'); ?>
-    <h4 class="text-center my-3">Laporan Grafik Penduduk</h4>
+    <h4 class="text-center my-3">Laporan Grafik Kelahiran</h4>
     <section class="p-3">
         <div class="row">
             <div class="col-12 col-sm-6 col-lg-3">
@@ -51,7 +51,7 @@
             ps.tahun,
             COUNT(p.id) jumlah
         FROM 
-            penduduk p 
+            kelahiran p 
         INNER JOIN 
             periode_sensus ps 
         ON 

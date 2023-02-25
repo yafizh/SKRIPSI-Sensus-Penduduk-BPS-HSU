@@ -92,10 +92,10 @@
                                         &&
                                         isset($_POST['sampai_periode_sensus'])
                                         &&
-                                        isset($_POST['id_pendidian'])
+                                        isset($_POST['id_pendidikan'])
                                     ) : ?>
                                         <?php
-                                        $link = "halaman/laporan/cetak/kecamatan.php?dari_periode_sensus=" . $_POST['dari_periode_sensus'] . "&sampai_periode_sensus=" . $_POST['dari_periode_sensus'] . "&id_pendidikan=" . $_POST['id_pendidikan'];
+                                        $link = "halaman/laporan/cetak/grafik_pendidikan.php?dari_periode_sensus=" . $_POST['dari_periode_sensus'] . "&sampai_periode_sensus=" . $_POST['sampai_periode_sensus'] . "&id_pendidikan=" . $_POST['id_pendidikan'];
                                         if (isset($_POST['kecamatan']))
                                             $link .= "&kecamatan=" . $_POST['kecamatan'];
                                         if (isset($_POST['kelurahan']))

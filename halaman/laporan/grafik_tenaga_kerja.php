@@ -48,10 +48,10 @@
                                     <div class="select-style-1">
                                         <label>Tenaga Kerja</label>
                                         <div class="select-position">
-                                            <select name="jenis_pekerjaan" required>
+                                            <select name="id_jenis_pekerjaan" required>
                                                 <option value="" selected disabled>Pilih Tenaga Kerja</option>
                                                 <?php while ($row = $periode_sensus->fetch_assoc()) : ?>
-                                                    <option <?= ($_POST['jenis_pekerjaan'] ?? '') == $row['id'] ? 'selected' : '' ?> value="<?= $row['id']; ?>"><?= $row['nama']; ?></option>
+                                                    <option <?= ($_POST['id_jenis_pekerjaan'] ?? '') == $row['id'] ? 'selected' : '' ?> value="<?= $row['id']; ?>"><?= $row['nama']; ?></option>
                                                 <?php endwhile; ?>
                                             </select>
                                         </div>
@@ -92,10 +92,10 @@
                                         &&
                                         isset($_POST['sampai_periode_sensus'])
                                         &&
-                                        isset($_POST['jenis_pekerjaan'])
+                                        isset($_POST['id_jenis_pekerjaan'])
                                     ) : ?>
                                         <?php
-                                        $link = "halaman/laporan/cetak/kecamatan.php?dari_periode_sensus=" . $_POST['dari_periode_sensus'] . "&sampai_periode_sensus=" . $_POST['dari_periode_sensus'] . "&jenis_pekerjaan=" . $_POST['jenis_pekerjaan'];
+                                        $link = "halaman/laporan/cetak/grafik_tenaga_kerja.php?dari_periode_sensus=" . $_POST['dari_periode_sensus'] . "&sampai_periode_sensus=" . $_POST['sampai_periode_sensus'] . "&id_jenis_pekerjaan=" . $_POST['id_jenis_pekerjaan'];
                                         if (isset($_POST['kecamatan']))
                                             $link .= "&kecamatan=" . $_POST['kecamatan'];
                                         if (isset($_POST['kelurahan']))
@@ -151,7 +151,7 @@
     WHERE 
         (ps.tahun >= " . $_POST['dari_periode_sensus'] . " AND ps.tahun <= " . $_POST['sampai_periode_sensus'] . ") 
         AND 
-        p.jenis_pekerjaan=" . $_POST['jenis_pekerjaan'] . "
+        p.id_jenis_pekerjaan=" . $_POST['id_jenis_pekerjaan'] . "
     ";
 
     if (isset($_POST['kecamatan']))
