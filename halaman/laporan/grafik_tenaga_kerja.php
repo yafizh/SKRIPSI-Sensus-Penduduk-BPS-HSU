@@ -160,7 +160,7 @@
     if (isset($_POST['kelurahan']))
         $q .= " AND kd.nama='" . $_POST['kelurahan'] . "'";
 
-    $q .= " ORDER BY ps.tahun";
+    $q .= "GROUP BY ps.tahun ORDER BY ps.tahun";
 
     $result = $koneksi->query($q)->fetch_all(MYSQLI_ASSOC);
 

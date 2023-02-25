@@ -73,7 +73,7 @@
     if (isset($_GET['kelurahan']))
         $q .= " AND kd.nama='" . $_GET['kelurahan'] . "'";
 
-    $q .= " ORDER BY ps.tahun";
+    $q .= "GROUP BY ps.tahun ORDER BY ps.tahun";
 
     $result = $koneksi->query($q)->fetch_all(MYSQLI_ASSOC);
 
