@@ -363,6 +363,7 @@ INSERT INTO `db_sensus_penduduk`.`kelurahan/desa` (
 (21, 'Ujung Murung', 'Desa');
 
 INSERT INTO `db_sensus_penduduk`.`pegawai` (
+    `id`,
     `id_pendidikan`,
     `id_agama/kepercayaan`,
     `nip`,
@@ -371,8 +372,56 @@ INSERT INTO `db_sensus_penduduk`.`pegawai` (
     `tanggal_lahir`,
     `foto` 
 ) VALUES 
-(6, 1, '199610102019022001', 'Ida Faridatul Alawiyah, S.ST', 'Binuang', '1996-10-10', ''),
-(6, 1, '198609262015051002', 'Awanis, S.TP., M.Si', 'Binuang', '1995-01-01', ''),
-(6, 1, '198609262015051007', 'Muhammad Ali', 'Binuang', '1986-09-26', ''),
-(6, 1, '198609262015051003', 'Muhammad Syarif, S.ST', 'Binuang', '1995-01-01', ''),
-(6, 1, '198609262015051331', 'Puspita Harum Maharani, M.Sc', 'Binuang', '1995-01-01', '');
+(1, 6, 1, '199610102019022001', 'Ida Faridatul Alawiyah, S.ST', 'Binuang', '1996-10-10', ''),
+(2, 6, 1, '198609262015051002', 'Awanis, S.TP., M.Si', 'Binuang', '1995-01-01', ''),
+(3, 6, 1, '198609262015051007', 'Muhammad Ali', 'Binuang', '1986-09-26', ''),
+(4, 6, 1, '198609262015051003', 'Muhammad Syarif, S.ST', 'Binuang', '1995-01-01', ''),
+(5, 6, 1, '198609262015051331', 'Puspita Harum Maharani, M.Sc', 'Binuang', '1995-01-01', ''),
+(6, 6, 1, '198609262115051331', 'Ahmad Isa Anshari, SE', 'Martapura', '1995-01-01', ''),
+(7, 6, 1, '198609262115051332', 'Ade Hasan Basri', 'Banjarbaru', '1995-01-01', ''),
+(8, 6, 1, '198609262115051333', 'Akli', 'Banjarmasin', '1995-01-01', ''),
+(9, 6, 1, '198609262115051334', 'Alfianoor', 'Semarang', '1995-01-01', ''),
+(10, 6, 1, '198609262115051335', 'Ariadi, S.Pi', 'Bandung', '1995-01-01', ''),
+(11, 6, 1, '198609262115051336', 'Bachtiar', 'Martapura', '1995-01-01', ''),
+(12, 6, 1, '198609262115051337', 'Jumarni', 'Martapura', '1995-01-01', ''),
+(13, 6, 1, '198609262115051338', 'Kusyanti', 'Martapura', '1995-01-01', ''),
+(14, 6, 1, '198609262115051339', 'Gusti Maisarah', 'Martapura', '1995-01-01', ''),
+(15, 6, 1, '198609262115051340', 'Agus Setiati', 'Martapura', '1995-01-01', ''),
+(16, 6, 1, '198609262115051341', 'Fiqy Hilmawan, S.Pt., M.Si', 'Martapura', '1995-01-01', ''),
+(17, 6, 1, '198619262115051341', 'Firmansyah, S.AP"', 'Martapura', '1995-01-01', ''),
+(18, 6, 1, '198609262115051342', 'Juhdy', 'Martapura', '1995-01-01', ''),
+(19, 6, 1, '198609262115051344', 'Kamaruddin', 'Martapura', '1995-01-01', ''),
+(20, 6, 1, '198609262115051346', 'Masdar', 'Martapura', '1995-01-01', ''),
+(21, 6, 1, '198609262115051347', 'Pagiyanto, S.ST', 'Martapura', '1995-01-01', ''),
+(22, 6, 1, '198609262115051348', 'Sumari', 'Martapura', '1995-01-01', ''),
+(23, 6, 1, '198609262115051349', 'Suradi', 'Martapura', '1995-01-01', ''),
+(24, 6, 1, '198609262115051350', 'Puspita Harum Maharani, SP., M.Sc', 'Martapura', '1995-01-01', ''),
+(25, 6, 1, '198609262115051351', 'Rasunawaty', 'Martapura', '1995-01-01', ''),
+(26, 6, 1, '198609262115051352', 'Rudy Ariani', 'Martapura', '1995-01-01', ''),
+(27, 6, 1, '198609262115051353', 'Shinta Anggreany, M.Si', 'Martapura', '1995-01-01', ''),
+(28, 6, 1, '198609262115051354', 'Sudiyono', 'Martapura', '1995-01-01', ''),
+(29, 6, 1, '198609262115051355', 'Sumadi', 'Martapura', '1995-01-01', ''),
+(30, 6, 1, '198609262115051356', 'Fungsional Umum', 'Martapura', '1995-01-01', '');
+
+-- INSERT INTO `db_sensus_penduduk`.`penduduk` (
+--     `id`,
+--     `id_kelurahan/desa`,
+--     `id_golongan_darah`,
+--     `id_pendidikan`,
+--     `id_jenis_pekerjaan`,
+--     `id_status_perkawinan`,
+--     `id_agama/kepercayaan`,
+--     `id_periode_sensus`,
+--     `nik`,
+--     `nama`,
+--     `tempat_lahir`,
+--     `tanggal_lahir`,
+--     `jenis_kelamin`,
+--     `nik_ibu_kandung`,
+--     `nama_ibu_kandung`,
+--     `nik_ayah_kandung`,
+--     `nama_ayah_kandung`,
+--     `alamat_sebelumnya`,
+--     `alamat_sekarang` 
+-- ) VALUES 
+-- (1, 1, 1, 1, 1, 1, 1, 1, 'nik', 'nama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'nik_ibu_kandung', 'nama_ibu_kandung', 'nik_ayah_kandung', 'nama_ayah_kandung', 'alamat_sebelumnya', 'alamat_sekarang');
