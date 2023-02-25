@@ -4,7 +4,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="title mb-30">
-                        <h3>Laporan Grafik Pendidikan</h3>
+                        <h3>Laporan Grafik Penduduk</h3>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                     <div class="card-style mb-30">
                         <form action="" method="POST">
                             <div class="row">
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-6">
                                     <?php $periode_sensus = $koneksi->query("SELECT * FROM periode_sensus ORDER BY tahun"); ?>
                                     <div class="select-style-1">
                                         <label>Dari Periode Sensus</label>
@@ -29,7 +29,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-6">
                                     <?php $periode_sensus = $koneksi->query("SELECT * FROM periode_sensus ORDER BY tahun DESC"); ?>
                                     <div class="select-style-1">
                                         <label>Sampai Periode Sensus</label>
@@ -38,20 +38,6 @@
                                                 <option value="" selected disabled>Pilih Periode Sensus</option>
                                                 <?php while ($row = $periode_sensus->fetch_assoc()) : ?>
                                                     <option <?= ($_POST['sampai_periode_sensus'] ?? '') == $row['tahun'] ? 'selected' : '' ?> value="<?= $row['tahun']; ?>"><?= $row['tahun']; ?></option>
-                                                <?php endwhile; ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <?php $periode_sensus = $koneksi->query("SELECT * FROM pendidikan ORDER BY nama"); ?>
-                                    <div class="select-style-1">
-                                        <label>Pendidikan</label>
-                                        <div class="select-position">
-                                            <select name="id_pendidikan" required>
-                                                <option value="" selected disabled>Pilih Pendidikan</option>
-                                                <?php while ($row = $periode_sensus->fetch_assoc()) : ?>
-                                                    <option <?= ($_POST['id_pendidikan'] ?? '') == $row['id'] ? 'selected' : '' ?> value="<?= $row['id']; ?>"><?= $row['nama']; ?></option>
                                                 <?php endwhile; ?>
                                             </select>
                                         </div>
@@ -87,15 +73,9 @@
                                 </div>
                                 <div class="col-12 d-flex justify-content-end gap-2">
                                     <button name="submit" class="main-btn btn-sm primary-btn btn-hover">Filter</button>
-                                    <?php if (
-                                        isset($_POST['dari_periode_sensus'])
-                                        &&
-                                        isset($_POST['sampai_periode_sensus'])
-                                        &&
-                                        isset($_POST['id_pendidian'])
-                                    ) : ?>
+                                    <?php if (isset($_POST['dari_periode_sensus']) && isset($_POST['sampai_periode_sensus'])) : ?>
                                         <?php
-                                        $link = "halaman/laporan/cetak/kecamatan.php?dari_periode_sensus=" . $_POST['dari_periode_sensus'] . "&sampai_periode_sensus=" . $_POST['dari_periode_sensus'] . "&id_pendidikan=" . $_POST['id_pendidikan'];
+                                        $link = "halaman/laporan/cetak/grafik_penduduk.php?dari_periode_sensus=" . ($_POST['dari_periode_sensus'] ?? '') . "&sampai_periode_sensus=" . ($_POST['dari_periode_sensus'] ?? '');
                                         if (isset($_POST['kecamatan']))
                                             $link .= "&kecamatan=" . $_POST['kecamatan'];
                                         if (isset($_POST['kelurahan']))
@@ -113,7 +93,7 @@
                         <div class="card-style mb-30">
                             <div class="title d-flex flex-wrap align-items-center justify-content-between">
                                 <div class="left">
-                                    <h6 class="text-medium mb-30">Grafik Pendidikan Periode Sensus <?= $_POST['dari_periode_sensus']; ?> - <?= $_POST['sampai_periode_sensus']; ?> <?= isset($_POST['kecamatan']) ? 'Kecamatan ' . $_POST['kecamatan'] : ''; ?> <?= isset($_POST['kelurahan']) ? 'Kelurahan ' . $_POST['kelurahan'] : ''; ?></h6>
+                                    <h6 class="text-medium mb-30">Grafik Penduduk Periode Sensus <?= $_POST['dari_periode_sensus']; ?> - <?= $_POST['sampai_periode_sensus']; ?> <?= isset($_POST['kecamatan']) ? 'Kecamatan ' . $_POST['kecamatan'] : ''; ?> <?= isset($_POST['kelurahan']) ? 'Kelurahan ' . $_POST['kelurahan'] : ''; ?></h6>
                                 </div>
                             </div>
                             <div class="chart">
@@ -149,10 +129,7 @@
     ON 
         k.id=kd.id_kecamatan  
     WHERE 
-        (ps.tahun >= " . $_POST['dari_periode_sensus'] . " AND ps.tahun <= " . $_POST['sampai_periode_sensus'] . ") 
-        AND 
-        p.id_pendidikan=" . $_POST['id_pendidikan'] . "
-    ";
+        (ps.tahun >= " . $_POST['dari_periode_sensus'] . " AND ps.tahun <= " . $_POST['sampai_periode_sensus'] . ")";
 
     if (isset($_POST['kecamatan']))
         $q .= " AND k.nama='" . $_POST['kecamatan'] . "'";

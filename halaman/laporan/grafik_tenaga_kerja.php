@@ -4,7 +4,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="title mb-30">
-                        <h3>Laporan Grafik Pendidikan</h3>
+                        <h3>Laporan Grafik Tenaga Kerja</h3>
                     </div>
                 </div>
             </div>
@@ -44,14 +44,14 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <?php $periode_sensus = $koneksi->query("SELECT * FROM pendidikan ORDER BY nama"); ?>
+                                    <?php $periode_sensus = $koneksi->query("SELECT * FROM jenis_pekerjaan ORDER BY nama"); ?>
                                     <div class="select-style-1">
-                                        <label>Pendidikan</label>
+                                        <label>Tenaga Kerja</label>
                                         <div class="select-position">
-                                            <select name="id_pendidikan" required>
-                                                <option value="" selected disabled>Pilih Pendidikan</option>
+                                            <select name="jenis_pekerjaan" required>
+                                                <option value="" selected disabled>Pilih Tenaga Kerja</option>
                                                 <?php while ($row = $periode_sensus->fetch_assoc()) : ?>
-                                                    <option <?= ($_POST['id_pendidikan'] ?? '') == $row['id'] ? 'selected' : '' ?> value="<?= $row['id']; ?>"><?= $row['nama']; ?></option>
+                                                    <option <?= ($_POST['jenis_pekerjaan'] ?? '') == $row['id'] ? 'selected' : '' ?> value="<?= $row['id']; ?>"><?= $row['nama']; ?></option>
                                                 <?php endwhile; ?>
                                             </select>
                                         </div>
@@ -92,10 +92,10 @@
                                         &&
                                         isset($_POST['sampai_periode_sensus'])
                                         &&
-                                        isset($_POST['id_pendidian'])
+                                        isset($_POST['jenis_pekerjaan'])
                                     ) : ?>
                                         <?php
-                                        $link = "halaman/laporan/cetak/kecamatan.php?dari_periode_sensus=" . $_POST['dari_periode_sensus'] . "&sampai_periode_sensus=" . $_POST['dari_periode_sensus'] . "&id_pendidikan=" . $_POST['id_pendidikan'];
+                                        $link = "halaman/laporan/cetak/kecamatan.php?dari_periode_sensus=" . $_POST['dari_periode_sensus'] . "&sampai_periode_sensus=" . $_POST['dari_periode_sensus'] . "&jenis_pekerjaan=" . $_POST['jenis_pekerjaan'];
                                         if (isset($_POST['kecamatan']))
                                             $link .= "&kecamatan=" . $_POST['kecamatan'];
                                         if (isset($_POST['kelurahan']))
@@ -113,7 +113,7 @@
                         <div class="card-style mb-30">
                             <div class="title d-flex flex-wrap align-items-center justify-content-between">
                                 <div class="left">
-                                    <h6 class="text-medium mb-30">Grafik Pendidikan Periode Sensus <?= $_POST['dari_periode_sensus']; ?> - <?= $_POST['sampai_periode_sensus']; ?> <?= isset($_POST['kecamatan']) ? 'Kecamatan ' . $_POST['kecamatan'] : ''; ?> <?= isset($_POST['kelurahan']) ? 'Kelurahan ' . $_POST['kelurahan'] : ''; ?></h6>
+                                    <h6 class="text-medium mb-30">Grafik Tenaga Kerja Periode Sensus <?= $_POST['dari_periode_sensus']; ?> - <?= $_POST['sampai_periode_sensus']; ?> <?= isset($_POST['kecamatan']) ? 'Kecamatan ' . $_POST['kecamatan'] : ''; ?> <?= isset($_POST['kelurahan']) ? 'Kelurahan ' . $_POST['kelurahan'] : ''; ?></h6>
                                 </div>
                             </div>
                             <div class="chart">
@@ -151,7 +151,7 @@
     WHERE 
         (ps.tahun >= " . $_POST['dari_periode_sensus'] . " AND ps.tahun <= " . $_POST['sampai_periode_sensus'] . ") 
         AND 
-        p.id_pendidikan=" . $_POST['id_pendidikan'] . "
+        p.jenis_pekerjaan=" . $_POST['jenis_pekerjaan'] . "
     ";
 
     if (isset($_POST['kecamatan']))
