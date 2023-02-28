@@ -72,8 +72,8 @@
                         </tr>
                     <?php endif; ?>
                     <tr>
-                        <td class="align-middle td-fit">Total</td>
-                        <td class="pl-5">: <?= array_sum($data); ?> Penduduk</td>
+                        <td class="align-middle td-fit">Total Penduduk</td>
+                        <td class="pl-5">: <?= array_sum($data); ?></td>
                     </tr>
                 </table>
             </div>

@@ -352,12 +352,6 @@ if (isset($_POST['tambah'])) {
                                         <textarea name="alamat_sekarang" class="bg-transparent" autocomplete="off"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="input-style-1">
-                                        <label>Alamat Sekarang</label>
-                                        <textarea name="alamat_sekarang" class="bg-transparent" autocomplete="off"></textarea>
-                                    </div>
-                                </div>
                                 <div class="col-12 mb-5">
                                     <div class="form-check checkbox-style mb-20">
                                         <input class="form-check-input" type="checkbox" value="1" id="checkbox-1" name="kelahiran">
