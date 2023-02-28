@@ -68,11 +68,11 @@ CREATE TABLE `db_sensus_penduduk`.`kelurahan/desa`(
     `id_kecamatan` BIGINT UNSIGNED,
     `nama` VARCHAR(255),
     `status` VARCHAR(255),
+    `jumlah_rumah_tangga` BIGINT UNSIGNED,
     PRIMARY KEY(`id`),
     FOREIGN KEY (`id_kecamatan`) REFERENCES kecamatan (`id`) ON DELETE CASCADE
 );
 
--- 
 CREATE TABLE `db_sensus_penduduk`.`pengguna`(
     `id` BIGINT UNSIGNED AUTO_INCREMENT,
     `username` VARCHAR(255) UNIQUE,

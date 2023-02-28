@@ -4,8 +4,9 @@ $periode_sensus = $koneksi->query("SELECT * FROM periode_sensus WHERE id=" . $_G
 if (isset($_POST['tambah'])) {
     $nama = $koneksi->real_escape_string($_POST['nama']);
     $status = $koneksi->real_escape_string($_POST['status']);
+    $jumlah_rumah_tangga = $koneksi->real_escape_string($_POST['jumlah_rumah_tangga']);
 
-    if ($koneksi->query("INSERT INTO `kelurahan/desa` (id_kecamatan, nama, status) VALUES (" . $_GET['id_kecamatan'] . ", '$nama', '$status')"))
+    if ($koneksi->query("INSERT INTO `kelurahan/desa` (id_kecamatan, nama, status, jumlah_rumah_tangga) VALUES (" . $_GET['id_kecamatan'] . ", '$nama', '$status', '$jumlah_rumah_tangga')"))
         echo "<script>location.href = '?page=kelurahan&action=detail&id_kecamatan=" . $_GET['id_kecamatan'] . "&id_periode_sensus=" . $_GET['id_periode_sensus'] . "';</script>";
     else die($koneksi->error);
 }
@@ -50,6 +51,12 @@ if (isset($_POST['tambah'])) {
                                                 <option value="Kelurahan">Kelurahan</option>
                                             </select>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-style-1">
+                                        <label>Jumlah Rumah Tangga</label>
+                                        <input type="number" class="bg-transparent" name="jumlah_rumah_tangga" autocomplete="off" min="0" required />
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between">
