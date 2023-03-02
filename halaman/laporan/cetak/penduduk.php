@@ -49,6 +49,39 @@
     $q .= " ORDER BY penduduk.nama";
     $result = $koneksi->query($q);
     ?>
+    <?php
+    $q = "
+        SELECT 
+            * 
+        FROM 
+            kartu_keluarga 
+        INNER JOIN 
+            `kelurahan/desa` 
+        ON 
+            `kelurahan/desa`.id=`kartu_keluarga`.`id_kelurahan/desa`  
+        INNER JOIN 
+            kecamatan 
+        ON 
+            kecamatan.id=`kelurahan/desa`.id_kecamatan 
+        INNER JOIN 
+            periode_sensus 
+        ON 
+            periode_sensus.id=kartu_keluarga.id_periode_sensus 
+        WHERE 
+            1=1 
+        ";
+
+    if (isset($_GET['id_periode_sensus']))
+        $q .= " AND periode_sensus.id=" . $_GET['id_periode_sensus'];
+
+    if (isset($_GET['kecamatan']))
+        $q .= " AND kecamatan.nama='" . $_GET['kecamatan'] . "'";
+
+    if (isset($_GET['kelurahan']))
+        $q .= " AND `kelurahan/desa`.nama='" . $_GET['kelurahan'] . "'";
+
+    $kartu_keluarga = $koneksi->query($q);
+    ?>
     <h4 class="text-center my-3">Laporan Penduduk</h4>
     <section class="p-3">
         <div class="row">
@@ -73,6 +106,10 @@
                             <td class="pl-5">: <?= $_GET['kelurahan']; ?></td>
                         </tr>
                     <?php endif; ?>
+                    <tr>
+                        <td class="align-middle td-fit">Total Rumah Tangga</td>
+                        <td class="pl-5">: <?= $kartu_keluarga->num_rows; ?></td>
+                    </tr>
                     <tr>
                         <td class="align-middle td-fit">Total Penduduk</td>
                         <td class="pl-5">: <?= $result->num_rows; ?></td>
