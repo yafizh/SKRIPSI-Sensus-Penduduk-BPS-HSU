@@ -147,6 +147,7 @@
                     <li><a href="?page=laporan&sub_page=grafik_pendidikan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'grafik_pendidikan' ? 'active' : ''; ?>">Grafik Pendidikan</a></li>
                     <li><a href="?page=laporan&sub_page=grafik_kelahiran&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'grafik_kelahiran' ? 'active' : ''; ?>">Grafik Kelahiran</a></li>
                     <li><a href="?page=laporan&sub_page=grafik_tenaga_kerja&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'grafik_tenaga_kerja' ? 'active' : ''; ?>">Grafik Tenaga Kerja</a></li>
+                    <li><a href="?page=laporan&sub_page=pencapaian_petugas&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'pencapaian_petugas' ? 'active' : ''; ?>">Pencapaian Petugas</a></li>
                 </ul>
             </li>
         </ul>

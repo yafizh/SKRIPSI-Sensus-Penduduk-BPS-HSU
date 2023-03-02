@@ -7,9 +7,13 @@ if ($ayah->num_rows) {
     $data = $ayah->fetch_assoc();
     $nik_ayah = $data['nik'];
     $nama_ayah = $data['nama'];
+    $alamat_sekarang = $data['alamat_sekarang'];
+    $alamat_sebelumnya = $data['alamat_sebelumnya'];
 } else {
     $nik_ayah = '';
     $nama_ayah = '';
+    $alamat_sekarang = '';
+    $alamat_sebelumnya = '';
 }
 
 $ibu = $koneksi->query("SELECT p.* FROM anggota_keluarga ak INNER JOIN penduduk p ON p.id=ak.id_penduduk WHERE ak.id_kartu_keluarga=" . $_GET['id_kartu_keluarga'] . " AND ak.id_status_keluarga=3");
@@ -17,9 +21,16 @@ if ($ibu->num_rows) {
     $data = $ibu->fetch_assoc();
     $nik_ibu = $data['nik'];
     $nama_ibu = $data['nama'];
+    $alamat_sekarang = $data['alamat_sekarang'];
+    $alamat_sebelumnya = $data['alamat_sebelumnya'];
 } else {
     $nik_ibu = '';
     $nama_ibu = '';
+
+    if (empty($nik_ayah) && empty($nama_ayah)) {
+        $alamat_sekarang = '';
+        $alamat_sebelumnya = '';
+    }
 }
 
 if (isset($_POST['tambah'])) {
@@ -398,11 +409,15 @@ if (isset($_POST['tambah'])) {
             document.querySelector('input[name=nik_ayah_kandung]').value = '<?= $nik_ayah; ?>';
             document.querySelector('input[name=nama_ibu_kandung]').value = '<?= $nama_ibu; ?>';
             document.querySelector('input[name=nik_ibu_kandung]').value = '<?= $nik_ibu; ?>';
+            document.querySelector('textarea[name=alamat_sekarang]').value = '<?= $alamat_sekarang; ?>';
+            document.querySelector('textarea[name=alamat_sebelumnya]').value = '<?= $alamat_sebelumnya; ?>';
         } else {
             document.querySelector('input[name=nama_ayah_kandung]').value = '';
             document.querySelector('input[name=nik_ayah_kandung]').value = '';
             document.querySelector('input[name=nama_ibu_kandung]').value = '';
             document.querySelector('input[name=nik_ibu_kandung]').value = '';
+            document.querySelector('textarea[name=alamat_sekarang]').value = '';
+            document.querySelector('textarea[name=alamat_sebelumnya]').value = '';
         }
     });
 </script>

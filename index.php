@@ -295,6 +295,8 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/laporan/grafik_kelahiran.php');
                     elseif (($_GET['sub_page'] ?? '') == 'grafik_tenaga_kerja')
                         include_once('halaman/laporan/grafik_tenaga_kerja.php');
+                    elseif (($_GET['sub_page'] ?? '') == 'pencapaian_petugas')
+                        include_once('halaman/laporan/pencapaian_petugas.php');
                 }
             } else include_once('halaman/dashboard/dashboard.php');
             ?>
