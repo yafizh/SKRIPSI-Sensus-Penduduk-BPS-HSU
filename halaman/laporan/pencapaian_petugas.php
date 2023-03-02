@@ -144,26 +144,33 @@
                                     <tbody>
                                         <?php if ($result->num_rows) : ?>
                                             <?php while ($row = $result->fetch_assoc()) : ?>
-                                                <tr>
-                                                    <td class="text-center fit">
-                                                        <p><?= $no++; ?></p>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <p><?= $row['status']; ?> <?= $row['nama']; ?></p>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <p><?= $row['jumlah_rumah_tangga']; ?></p>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <p><?= $row['jumlah_penduduk']; ?></p>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <p><?= $row['jumlah_kelahiran']; ?></p>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <p><?= $row['jumlah_kematian']; ?></p>
-                                                    </td>
-                                                </tr>
+                                                <?php if (
+                                                    $row['jumlah_rumah_tangga'] ||
+                                                    $row['jumlah_penduduk'] ||
+                                                    $row['jumlah_kelahiran'] ||
+                                                    $row['jumlah_kematian']
+                                                ) : ?>
+                                                    <tr>
+                                                        <td class="text-center fit">
+                                                            <p><?= $no++; ?></p>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <p><?= $row['status']; ?> <?= $row['nama']; ?></p>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <p><?= $row['jumlah_rumah_tangga']; ?></p>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <p><?= $row['jumlah_penduduk']; ?></p>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <p><?= $row['jumlah_kelahiran']; ?></p>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <p><?= $row['jumlah_kematian']; ?></p>
+                                                        </td>
+                                                    </tr>
+                                                <?php endif; ?>
                                             <?php endwhile; ?>
                                         <?php else : ?>
                                             <tr>

@@ -12,21 +12,69 @@
 <body>
     <?php include_once('header.php'); ?>
     <h4 class="text-center my-3">Laporan Kelurahan/Desa</h4>
-    <?php if (isset($_GET['id_periode_sensus'])) : ?>
-        <?php $periode_sensus = $koneksi->query("SELECT * FROM periode_sensus WHERE id=" . $_GET['id_periode_sensus'])->fetch_assoc();  ?>
-        <section class="p-3">
-            <div class="row">
-                <div class="col-12 col-sm-6 col-lg-2">
-                    <table class="table">
+    <section class="p-3">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-2">
+                <table class="table">
+                    <?php if (isset($_GET['id_periode_sensus'])) : ?>
+                        <?php $periode_sensus = $koneksi->query("SELECT * FROM periode_sensus WHERE id=" . $_GET['id_periode_sensus'])->fetch_assoc();  ?>
                         <tr>
                             <td class="align-middle td-fit">Periode Sensus</td>
                             <td class="pl-5">: <?= $periode_sensus['tahun']; ?></td>
                         </tr>
-                    </table>
-                </div>
+                    <?php endif; ?>
+                    <tr>
+                        <?php
+                        $q = "SELECT * FROM petugas";
+
+                        if (isset($_GET['id_periode_sensus']))
+                            $q .= " WHERE id_periode_sensus=" . $periode_sensus['id'];
+
+                        $petugas = $koneksi->query($q);
+                        ?>
+                        <td class="align-middle td-fit">Jumlah Petugas</td>
+                        <td class="pl-5">: <?= $petugas->num_rows; ?></td>
+                    </tr>
+                    <tr>
+                        <?php
+                        $q = "SELECT * FROM penduduk";
+
+                        if (isset($_GET['id_periode_sensus']))
+                            $q .= " WHERE id_periode_sensus=" . $periode_sensus['id'];
+
+                        $penduduk = $koneksi->query($q);
+                        ?>
+                        <td class="align-middle td-fit">Jumlah Penduduk</td>
+                        <td class="pl-5">: <?= $penduduk->num_rows; ?></td>
+                    </tr>
+                    <tr>
+                        <?php
+                        $q = "SELECT * FROM kelahiran";
+
+                        if (isset($_GET['id_periode_sensus']))
+                            $q .= " WHERE id_periode_sensus=" . $periode_sensus['id'];
+
+                        $kelahiran = $koneksi->query($q);
+                        ?>
+                        <td class="align-middle td-fit">Jumlah Kelahiran</td>
+                        <td class="pl-5">: <?= $kelahiran->num_rows; ?></td>
+                    </tr>
+                    <tr>
+                        <?php
+                        $q = "SELECT * FROM kematian";
+
+                        if (isset($_GET['id_periode_sensus']))
+                            $q .= " WHERE id_periode_sensus=" . $periode_sensus['id'];
+
+                        $kematian = $koneksi->query($q);
+                        ?>
+                        <td class="align-middle td-fit">Jumlah Kematian</td>
+                        <td class="pl-5">: <?= $kematian->num_rows; ?></td>
+                    </tr>
+                </table>
             </div>
-        </section>
-    <?php endif; ?>
+        </div>
+    </section>
     <main class="p-3">
         <table class="table table-bordered">
             <thead>
@@ -85,6 +133,10 @@
             $q .= " ORDER BY periode_sensus.tahun DESC";
             $result = $koneksi->query($q);
             $no = 1;
+            $jumlah_petugas = 0;
+            $jumlah_penduduk = 0;
+            $jumlah_kematian = 0;
+            $jumlah_kelahiran = 0;
             ?>
             <tbody>
                 <?php if ($result->num_rows) : ?>
@@ -112,7 +164,30 @@
                                 <p class="m-0"><?= $row['jumlah_kelahiran']; ?></p>
                             </td>
                         </tr>
+                        <?php
+                        $jumlah_petugas += $row['jumlah_petugas'];
+                        $jumlah_penduduk += $row['jumlah_penduduk'];
+                        $jumlah_kematian += $row['jumlah_kematian'];
+                        $jumlah_kelahiran += $row['jumlah_kelahiran'];
+                        ?>
                     <?php endwhile; ?>
+                    <tr>
+                        <td colspan="3" class="text-center align-middle fit">
+                            <p class="m-0"><b>Total</b></p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0"><b><?= $jumlah_petugas; ?></b></p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0"><b><?= $jumlah_penduduk; ?></b></p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0"><b><?= $jumlah_kematian; ?></b></p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0"><b><?= $jumlah_kelahiran; ?></b></p>
+                        </td>
+                    </tr>
                 <?php else : ?>
                     <tr>
                         <td class="text-center" colspan="8">Data Kosong</td>

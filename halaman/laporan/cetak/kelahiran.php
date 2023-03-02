@@ -14,7 +14,11 @@
     <?php
     $q = "
         SELECT 
-            penduduk.*
+            kecamatan.nama nama_kecamatan,
+            penduduk.*, 
+            `kelurahan/desa`.nama nama_kelurahan,
+            `kelurahan/desa`.status status_kelurahan,
+            periode_sensus.tahun
         FROM 
             kelahiran 
         INNER JOIN 
@@ -34,36 +38,80 @@
         ON 
             periode_sensus.id=kelahiran.id_periode_sensus 
         WHERE 
-            periode_sensus.id=" . $_GET['id_periode_sensus'] . " 
-            AND 
-            kecamatan.nama='" . $_GET['kecamatan'] . "' 
-            AND 
-            `kelurahan/desa`.nama='" . $_GET['kelurahan'] . "'
+            1=1 
         ";
+
+    if (isset($_POST['id_periode_sensus']))
+        $q .= " AND periode_sensus.id=" . $_POST['id_periode_sensus'];
+
+    if (isset($_POST['kecamatan']))
+        $q .= " AND kecamatan.nama='" . $_POST['kecamatan'] . "'";
+
+    if (isset($_POST['kelurahan']))
+        $q .= " AND `kelurahan/desa`.nama='" . $_POST['kelurahan'] . "'";
+
     $q .= " ORDER BY penduduk.nama";
     $result = $koneksi->query($q);
     ?>
     <h4 class="text-center my-3">Laporan Kelahiran</h4>
-    <?php $periode_sensus = $koneksi->query("SELECT * FROM periode_sensus WHERE id=" . $_GET['id_periode_sensus'])->fetch_assoc();  ?>
     <section class="p-3">
         <div class="row">
             <div class="col-12 col-sm-6">
                 <table class="table">
+                    <?php if (isset($_GET['id_periode_sensus'])) : ?>
+                        <?php $periode_sensus = $koneksi->query("SELECT * FROM periode_sensus WHERE id=" . $_GET['id_periode_sensus'])->fetch_assoc();  ?>
+                        <tr>
+                            <td class="align-middle td-fit">Periode Sensus</td>
+                            <td class="pl-5">: <?= $periode_sensus['tahun']; ?></td>
+                        </tr>
+                    <?php endif; ?>
                     <tr>
-                        <td class="align-middle td-fit">Periode Sensus</td>
-                        <td class="pl-5">: <?= $periode_sensus['tahun']; ?></td>
+                        <?php
+                        $q = "SELECT * FROM petugas";
+
+                        if (isset($_GET['id_periode_sensus']))
+                            $q .= " WHERE id_periode_sensus=" . $periode_sensus['id'];
+
+                        $petugas = $koneksi->query($q);
+                        ?>
+                        <td class="align-middle td-fit">Jumlah Petugas</td>
+                        <td class="pl-5">: <?= $petugas->num_rows; ?></td>
                     </tr>
                     <tr>
-                        <td class="align-middle td-fit">Kecamatan</td>
-                        <td class="pl-5">: <?= $_GET['kecamatan']; ?></td>
+                        <?php
+                        $q = "SELECT * FROM penduduk";
+
+                        if (isset($_GET['id_periode_sensus']))
+                            $q .= " WHERE id_periode_sensus=" . $periode_sensus['id'];
+
+                        $penduduk = $koneksi->query($q);
+                        ?>
+                        <td class="align-middle td-fit">Jumlah Penduduk</td>
+                        <td class="pl-5">: <?= $penduduk->num_rows; ?></td>
                     </tr>
                     <tr>
-                        <td class="align-middle td-fit">Kelurahan/Desa</td>
-                        <td class="pl-5">: <?= $_GET['kelurahan']; ?></td>
+                        <?php
+                        $q = "SELECT * FROM kelahiran";
+
+                        if (isset($_GET['id_periode_sensus']))
+                            $q .= " WHERE id_periode_sensus=" . $periode_sensus['id'];
+
+                        $kelahiran = $koneksi->query($q);
+                        ?>
+                        <td class="align-middle td-fit">Jumlah Kelahiran</td>
+                        <td class="pl-5">: <?= $kelahiran->num_rows; ?></td>
                     </tr>
                     <tr>
-                        <td class="align-middle td-fit">Total Kelahiran</td>
-                        <td class="pl-5">: <?= $result->num_rows; ?></td>
+                        <?php
+                        $q = "SELECT * FROM kematian";
+
+                        if (isset($_GET['id_periode_sensus']))
+                            $q .= " WHERE id_periode_sensus=" . $periode_sensus['id'];
+
+                        $kematian = $koneksi->query($q);
+                        ?>
+                        <td class="align-middle td-fit">Jumlah Kematian</td>
+                        <td class="pl-5">: <?= $kematian->num_rows; ?></td>
                     </tr>
                 </table>
             </div>
@@ -76,6 +124,21 @@
                     <th class="text-center align-middle fit">
                         <h6>No</h6>
                     </th>
+                    <?php if (!isset($_POST['id_periode_sensus'])) : ?>
+                        <th class="text-center align-middle">
+                            <h6>Periode Sensus</h6>
+                        </th>
+                    <?php endif; ?>
+                    <?php if (!isset($_POST['kecamatan'])) : ?>
+                        <th class="text-center align-middle">
+                            <h6>Kecamatan</h6>
+                        </th>
+                    <?php endif; ?>
+                    <?php if (!isset($_POST['kelurahan'])) : ?>
+                        <th class="text-center align-middle">
+                            <h6>Kelurahan/Desa</h6>
+                        </th>
+                    <?php endif; ?>
                     <th class="text-center align-middle">
                         <h6>Nama</h6>
                     </th>
@@ -99,6 +162,21 @@
                             <td class="text-center align-middle fit">
                                 <p class="m-0"><?= $no++; ?></p>
                             </td>
+                            <?php if (!isset($_POST['id_periode_sensus'])) : ?>
+                                <td class="text-center align-middle">
+                                    <p class="m-0"><?= $row['tahun']; ?></p>
+                                </td>
+                            <?php endif; ?>
+                            <?php if (!isset($_POST['kecamatan'])) : ?>
+                                <td class="text-center align-middle">
+                                    <p class="m-0"><?= $row['nama_kecamatan']; ?></p>
+                                </td>
+                            <?php endif; ?>
+                            <?php if (!isset($_POST['kelurahan'])) : ?>
+                                <td class="text-center align-middle">
+                                    <p class="m-0"><?= $row['nama_kelurahan']; ?></p>
+                                </td>
+                            <?php endif; ?>
                             <td class="align-middle">
                                 <p class="m-0"><?= $row['nama']; ?></p>
                             </td>
