@@ -73,6 +73,9 @@ else
                                                 <h6>Nama Kecamatan</h6>
                                             </th>
                                             <th class="text-center">
+                                                <h6>Jumlah Rumah Tangga</h6>
+                                            </th>
+                                            <th class="text-center">
                                                 <h6>Jumlah Petugas</h6>
                                             </th>
                                             <th class="fit">
@@ -95,7 +98,8 @@ else
                                                 pk.id_petugas=p.id  
                                             WHERE 
                                                 pk.id_kecamatan=k.id
-                                        ) jumlah 
+                                        ) jumlah,
+                                        IFNULL((SELECT SUM(jumlah_rumah_tangga) FROM `kelurahan/desa` WHERE id_kecamatan=k.id),0) AS jumlah_rumah_tangga 
                                     FROM 
                                         kecamatan k 
                                     INNER JOIN 
@@ -118,6 +122,9 @@ else
                                                     </td>
                                                     <td class="text-center">
                                                         <p><?= $row['nama']; ?></p>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <p><?= $row['jumlah_rumah_tangga']; ?></p>
                                                     </td>
                                                     <td class="text-center">
                                                         <p><?= $row['jumlah']; ?></p>

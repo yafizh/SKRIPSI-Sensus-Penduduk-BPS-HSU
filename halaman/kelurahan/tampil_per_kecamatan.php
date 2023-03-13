@@ -30,6 +30,9 @@ $periode_sensus = $koneksi->query("SELECT * FROM periode_sensus WHERE id=" . $_G
                                         <th class="text-center">
                                             <h6>Nama Keluarahan</h6>
                                         </th>
+                                        <th class="text-center">
+                                            <h6>Jumlah Rumah Tangga</h6>
+                                        </th>
                                         <th class="fit">
                                             <h6></h6>
                                         </th>
@@ -57,6 +60,9 @@ $periode_sensus = $koneksi->query("SELECT * FROM periode_sensus WHERE id=" . $_G
                                                 </td>
                                                 <td class="text-center">
                                                     <p><?= $row['status']; ?> <?= $row['nama']; ?></p>
+                                                </td>
+                                                <td class="text-center">
+                                                    <p><?= $row['jumlah_rumah_tangga']; ?></p>
                                                 </td>
                                                 <td class="fit">
                                                     <div class="d-flex gap-3">

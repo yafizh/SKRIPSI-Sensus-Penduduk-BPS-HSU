@@ -139,13 +139,15 @@
                 <ul id="laporan" class="collapse dropdown-nav <?= ($_GET['page'] ?? '') == 'laporan' ? 'show' : ''; ?>">
                     <li><a href="?page=laporan&sub_page=kecamatan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'kecamatan' ? 'active' : ''; ?>">Kecamatan</a></li>
                     <li><a href="?page=laporan&sub_page=kelurahan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'kelurahan' ? 'active' : ''; ?>">Kelurahan/Desa</a></li>
-                    <li><a href="?page=laporan&sub_page=petugas_kecamatan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'petugas_kecamatan' ? 'active' : ''; ?>">Petugas Kecamatan</a></li>
-                    <li><a href="?page=laporan&sub_page=petugas_kelurahan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'petugas_kelurahan' ? 'active' : ''; ?>">Petugas Kelurahan/Desa</a></li>
+                    <li><a href="?page=laporan&sub_page=penduduk&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'penduduk' ? 'active' : ''; ?>">Penduduk</a></li>
+                    <li><a href="?page=laporan&sub_page=kematian&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'kematian' ? 'active' : ''; ?>">Kematian</a></li>
+                    <li><a href="?page=laporan&sub_page=kelahiran&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'kelahiran' ? 'active' : ''; ?>">Kelahiran</a></li>
                     <li><a href="?page=laporan&sub_page=grafik_penduduk&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'grafik_penduduk' ? 'active' : ''; ?>">Grafik Penduduk</a></li>
                     <li><a href="?page=laporan&sub_page=grafik_kematian&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'grafik_kematian' ? 'active' : ''; ?>">Grafik Kematian</a></li>
                     <li><a href="?page=laporan&sub_page=grafik_pendidikan&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'grafik_pendidikan' ? 'active' : ''; ?>">Grafik Pendidikan</a></li>
                     <li><a href="?page=laporan&sub_page=grafik_kelahiran&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'grafik_kelahiran' ? 'active' : ''; ?>">Grafik Kelahiran</a></li>
                     <li><a href="?page=laporan&sub_page=grafik_tenaga_kerja&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'grafik_tenaga_kerja' ? 'active' : ''; ?>">Grafik Tenaga Kerja</a></li>
+                    <li><a href="?page=laporan&sub_page=pencapaian_petugas&action=tampil" class="<?= ($_GET['sub_page'] ?? '') == 'pencapaian_petugas' ? 'active' : ''; ?>">Pencapaian Petugas</a></li>
                 </ul>
             </li>
         </ul>

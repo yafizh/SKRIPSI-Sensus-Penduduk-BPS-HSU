@@ -1,6 +1,7 @@
-<?php 
+<?php
 $kelurahan = $koneksi->query("SELECT * FROM `kelurahan/desa` WHERE id=" . $_GET['id_kelurahan'])->fetch_assoc();
 $kecamatan = $koneksi->query("SELECT * FROM kecamatan WHERE id=" . $_GET['id_kecamatan'])->fetch_assoc();
+$rumah_tangga_tersensus = $koneksi->query("SELECT COUNT(*) jumlah FROM kartu_keluarga kk WHERE kk.`id_kelurahan/desa`=" . $_GET['id_kelurahan'])->fetch_assoc();
 if (isset($_POST['id_periode_sensus']))
     $periode_sensus = $koneksi->query("SELECT * FROM periode_sensus WHERE id=" . $_POST['id_periode_sensus'])->fetch_all(MYSQLI_ASSOC);
 else
@@ -13,6 +14,8 @@ else
                 <div class="col">
                     <div class="title mb-30">
                         <h3>Data Sensus</h3>
+                        <p>Total Jumlah Rumah Tangga: <?= $kelurahan['jumlah_rumah_tangga']; ?></p>
+                        <p>Jumlah Rumah Tangga Telah Disensus: <?= empty($rumah_tangga_tersensus['jumlah']) ? '0' : $rumah_tangga_tersensus['jumlah']; ?></p>
                     </div>
                 </div>
             </div>
@@ -39,11 +42,11 @@ else
                                 </thead>
                                 <?php
                                 $q = "
-                                (SELECT COUNT(*) FROM penduduk WHERE `id_kelurahan/desa`=".$_GET['id_kelurahan'].")
+                                (SELECT COUNT(*) FROM penduduk WHERE `id_kelurahan/desa`=" . $_GET['id_kelurahan'] . ")
                                 UNION ALL
-                                (SELECT COUNT(*) FROM kelahiran WHERE `id_kelurahan/desa`=".$_GET['id_kelurahan'].")
+                                (SELECT COUNT(*) FROM kelahiran WHERE `id_kelurahan/desa`=" . $_GET['id_kelurahan'] . ")
                                 UNION ALL
-                                (SELECT COUNT(*) FROM kematian WHERE `id_kelurahan/desa`=".$_GET['id_kelurahan'].")";
+                                (SELECT COUNT(*) FROM kematian WHERE `id_kelurahan/desa`=" . $_GET['id_kelurahan'] . ")";
 
                                 $result = $koneksi->query($q)->fetch_all(MYSQLI_NUM);
                                 $no = 1;

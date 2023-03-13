@@ -2,6 +2,37 @@
 $kecamatan = $koneksi->query("SELECT * FROM kecamatan WHERE id=" . $_GET['id_kecamatan'])->fetch_assoc();
 $kelurahan = $koneksi->query("SELECT * FROM `kelurahan/desa` WHERE id=" . $_GET['id_kelurahan'])->fetch_assoc();
 $kartu_keluarga = $koneksi->query("SELECT * FROM kartu_keluarga WHERE id=" . $_GET['id_kartu_keluarga'])->fetch_assoc();
+$ayah = $koneksi->query("SELECT p.* FROM anggota_keluarga ak INNER JOIN penduduk p ON p.id=ak.id_penduduk WHERE ak.id_kartu_keluarga=" . $_GET['id_kartu_keluarga'] . " AND (ak.id_status_keluarga=2 OR ak.id_status_keluarga=1)");
+if ($ayah->num_rows) {
+    $data = $ayah->fetch_assoc();
+    $nik_ayah = $data['nik'];
+    $nama_ayah = $data['nama'];
+    $alamat_sekarang = $data['alamat_sekarang'];
+    $alamat_sebelumnya = $data['alamat_sebelumnya'];
+} else {
+    $nik_ayah = '';
+    $nama_ayah = '';
+    $alamat_sekarang = '';
+    $alamat_sebelumnya = '';
+}
+
+$ibu = $koneksi->query("SELECT p.* FROM anggota_keluarga ak INNER JOIN penduduk p ON p.id=ak.id_penduduk WHERE ak.id_kartu_keluarga=" . $_GET['id_kartu_keluarga'] . " AND ak.id_status_keluarga=3");
+if ($ibu->num_rows) {
+    $data = $ibu->fetch_assoc();
+    $nik_ibu = $data['nik'];
+    $nama_ibu = $data['nama'];
+    $alamat_sekarang = $data['alamat_sekarang'];
+    $alamat_sebelumnya = $data['alamat_sebelumnya'];
+} else {
+    $nik_ibu = '';
+    $nama_ibu = '';
+
+    if (empty($nik_ayah) && empty($nama_ayah)) {
+        $alamat_sekarang = '';
+        $alamat_sebelumnya = '';
+    }
+}
+
 if (isset($_POST['tambah'])) {
     $nik = $koneksi->real_escape_string($_POST['nik'] ?? '');
     $nama = $koneksi->real_escape_string($_POST['nama'] ?? '');
@@ -352,12 +383,6 @@ if (isset($_POST['tambah'])) {
                                         <textarea name="alamat_sekarang" class="bg-transparent" autocomplete="off"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="input-style-1">
-                                        <label>Alamat Sekarang</label>
-                                        <textarea name="alamat_sekarang" class="bg-transparent" autocomplete="off"></textarea>
-                                    </div>
-                                </div>
                                 <div class="col-12 mb-5">
                                     <div class="form-check checkbox-style mb-20">
                                         <input class="form-check-input" type="checkbox" value="1" id="checkbox-1" name="kelahiran">
@@ -377,3 +402,22 @@ if (isset($_POST['tambah'])) {
     </div>
 </section>
 <?php include_once('layout/js.php'); ?>
+<script>
+    document.querySelector('select[name=id_status_keluarga]').addEventListener('change', function() {
+        if (this.options[this.selectedIndex].value == 4) {
+            document.querySelector('input[name=nama_ayah_kandung]').value = '<?= $nama_ayah; ?>';
+            document.querySelector('input[name=nik_ayah_kandung]').value = '<?= $nik_ayah; ?>';
+            document.querySelector('input[name=nama_ibu_kandung]').value = '<?= $nama_ibu; ?>';
+            document.querySelector('input[name=nik_ibu_kandung]').value = '<?= $nik_ibu; ?>';
+            document.querySelector('textarea[name=alamat_sekarang]').value = '<?= $alamat_sekarang; ?>';
+            document.querySelector('textarea[name=alamat_sebelumnya]').value = '<?= $alamat_sebelumnya; ?>';
+        } else {
+            document.querySelector('input[name=nama_ayah_kandung]').value = '';
+            document.querySelector('input[name=nik_ayah_kandung]').value = '';
+            document.querySelector('input[name=nama_ibu_kandung]').value = '';
+            document.querySelector('input[name=nik_ibu_kandung]').value = '';
+            document.querySelector('textarea[name=alamat_sekarang]').value = '';
+            document.querySelector('textarea[name=alamat_sebelumnya]').value = '';
+        }
+    });
+</script>

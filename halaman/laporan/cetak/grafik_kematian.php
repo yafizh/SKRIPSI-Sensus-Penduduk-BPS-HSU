@@ -11,40 +11,6 @@
 
 <body>
     <?php include_once('header.php'); ?>
-    <h4 class="text-center my-3">Laporan Grafik Kematian</h4>
-    <section class="p-3">
-        <div class="row">
-            <div class="col-12 col-sm-6 col-lg-3">
-                <table class="table">
-                    <tr>
-                        <td class="align-middle td-fit">Periode Sensus</td>
-                        <td class="pl-5">: <?= $_GET['dari_periode_sensus']; ?> - <?= $_GET['sampai_periode_sensus']; ?></td>
-                    </tr>
-                    <?php if (isset($_GET['kecamatan'])) : ?>
-                        <tr>
-                            <td class="align-middle td-fit">Kecamatan</td>
-                            <td class="pl-5">: <?= $_GET['kecamatan']; ?></td>
-                        </tr>
-                    <?php endif; ?>
-                    <?php if (isset($_GET['kelurahan'])) : ?>
-                        <tr>
-                            <td class="align-middle td-fit">Kelurahan/Desa</td>
-                            <td class="pl-5">: <?= $_GET['kelurahan']; ?></td>
-                        </tr>
-                    <?php endif; ?>
-                </table>
-            </div>
-        </div>
-    </section>
-    <main class="p-3">
-        <canvas id="Chart2" style="width: 100%; height: 350px"></canvas>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../assets/js/Chart.min.js"></script>
-    <script src="../../../assets/js/apexcharts.min.js"></script>
-    <script src="../../../assets/js/dynamic-pie-chart.js"></script>
     <?php
     $q = "
         SELECT 
@@ -84,6 +50,44 @@
         $data[] = $value['jumlah'];
     }
     ?>
+    <h4 class="text-center my-3">Laporan Grafik Kematian</h4>
+    <section class="p-3">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <table class="table">
+                    <tr>
+                        <td class="align-middle td-fit">Periode Sensus</td>
+                        <td class="pl-5">: <?= $_GET['dari_periode_sensus']; ?> - <?= $_GET['sampai_periode_sensus']; ?></td>
+                    </tr>
+                    <?php if (isset($_GET['kecamatan'])) : ?>
+                        <tr>
+                            <td class="align-middle td-fit">Kecamatan</td>
+                            <td class="pl-5">: <?= $_GET['kecamatan']; ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if (isset($_GET['kelurahan'])) : ?>
+                        <tr>
+                            <td class="align-middle td-fit">Kelurahan/Desa</td>
+                            <td class="pl-5">: <?= $_GET['kelurahan']; ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <tr>
+                        <td class="align-middle td-fit">Total Kematian</td>
+                        <td class="pl-5">: <?= array_sum($data); ?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+    <main class="p-3">
+        <canvas id="Chart2" style="width: 100%; height: 350px"></canvas>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../assets/js/Chart.min.js"></script>
+    <script src="../../../assets/js/apexcharts.min.js"></script>
+    <script src="../../../assets/js/dynamic-pie-chart.js"></script>
     <script>
         const ctx2 = document.getElementById("Chart2").getContext("2d");
         const chart2 = new Chart(ctx2, {

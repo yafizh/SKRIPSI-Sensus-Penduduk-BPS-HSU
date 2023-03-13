@@ -75,6 +75,9 @@ else
                                             <th class="text-center">
                                                 <h6>Jumlah Kelurahan/Desa</h6>
                                             </th>
+                                            <th class="text-center">
+                                                <h6>Jumlah Rumah Tangga</h6>
+                                            </th>
                                             <th class="fit">
                                                 <h6></h6>
                                             </th>
@@ -83,8 +86,10 @@ else
                                     <?php
                                     $q = "
                                     SELECT 
-                                        *,
-                                        (SELECT COUNT(*) FROM `kelurahan/desa` WHERE id_kecamatan=kecamatan.id) AS jumlah 
+                                        kecamatan.*,
+                                        periode_sensus.id id_periode_sensus,
+                                        (SELECT COUNT(*) FROM `kelurahan/desa` WHERE id_kecamatan=kecamatan.id) AS jumlah, 
+                                        IFNULL((SELECT SUM(jumlah_rumah_tangga) FROM `kelurahan/desa` WHERE id_kecamatan=kecamatan.id),0) AS jumlah_rumah_tangga 
                                     FROM 
                                         kecamatan 
                                     INNER JOIN 
@@ -111,9 +116,12 @@ else
                                                     <td class="text-center">
                                                         <p><?= $row['jumlah']; ?></p>
                                                     </td>
+                                                    <td class="text-center">
+                                                        <p><?= $row['jumlah_rumah_tangga']; ?></p>
+                                                    </td>
                                                     <td class="fit">
                                                         <div class="action">
-                                                            <a href="?page=kelurahan&action=detail&id_kecamatan=<?= $row['id']; ?>&id_periode_sensus=<?= $periode_sensus[0]['id']; ?>" class="text-secondary">
+                                                            <a href="?page=kelurahan&action=detail&id_kecamatan=<?= $row['id']; ?>&id_periode_sensus=<?= $row['id_periode_sensus']; ?>" class="text-secondary">
                                                                 <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                                                                     <path fill="currentColor" d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z" />
                                                                 </svg>

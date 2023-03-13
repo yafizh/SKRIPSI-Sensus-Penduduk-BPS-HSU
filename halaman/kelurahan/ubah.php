@@ -5,8 +5,9 @@ $periode_sensus = $koneksi->query("SELECT * FROM periode_sensus WHERE id=" . $_G
 if (isset($_POST['edit'])) {
     $nama = $koneksi->real_escape_string($_POST['nama']);
     $status = $koneksi->real_escape_string($_POST['status']);
+    $jumlah_rumah_tangga = $koneksi->real_escape_string($_POST['jumlah_rumah_tangga']);
 
-    if ($koneksi->query("UPDATE `kelurahan/desa` SET nama='$nama', status='$status' WHERE id=" . $_GET['id']))
+    if ($koneksi->query("UPDATE `kelurahan/desa` SET nama='$nama', status='$status', jumlah_rumah_tangga='$jumlah_rumah_tangga' WHERE id=" . $_GET['id']))
         echo "<script>location.href = '?page=kelurahan&action=detail&id_kecamatan=" . $_GET['id_kecamatan'] . "&id_periode_sensus=" . $_GET['id_periode_sensus'] . "';</script>";
     else die($koneksi->error);
 }
@@ -50,6 +51,12 @@ if (isset($_POST['edit'])) {
                                                 <option value="Kelurahan" <?= $data['status'] == 'Kelurahan' ? 'selected' : ''; ?>>Kelurahan</option>
                                             </select>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-style-1">
+                                        <label>Jumlah Rumah Tangga</label>
+                                        <input type="number" class="bg-transparent" name="jumlah_rumah_tangga" autocomplete="off" min="0" required value="<?= $data['jumlah_rumah_tangga']; ?>" />
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between">

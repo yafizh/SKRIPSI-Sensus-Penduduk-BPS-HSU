@@ -279,10 +279,12 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/laporan/kecamatan.php');
                     elseif (($_GET['sub_page'] ?? '') == 'kelurahan')
                         include_once('halaman/laporan/kelurahan.php');
-                    elseif (($_GET['sub_page'] ?? '') == 'petugas_kecamatan')
-                        include_once('halaman/laporan/petugas_kecamatan.php');
-                    elseif (($_GET['sub_page'] ?? '') == 'petugas_kelurahan')
-                        include_once('halaman/laporan/petugas_kelurahan.php');
+                    elseif (($_GET['sub_page'] ?? '') == 'penduduk')
+                        include_once('halaman/laporan/penduduk.php');
+                    elseif (($_GET['sub_page'] ?? '') == 'kelahiran')
+                        include_once('halaman/laporan/kelahiran.php');
+                    elseif (($_GET['sub_page'] ?? '') == 'kematian')
+                        include_once('halaman/laporan/kematian.php');
                     elseif (($_GET['sub_page'] ?? '') == 'grafik_penduduk')
                         include_once('halaman/laporan/grafik_penduduk.php');
                     elseif (($_GET['sub_page'] ?? '') == 'grafik_kematian')
@@ -293,6 +295,8 @@ if (!isset($_SESSION['user']))
                         include_once('halaman/laporan/grafik_kelahiran.php');
                     elseif (($_GET['sub_page'] ?? '') == 'grafik_tenaga_kerja')
                         include_once('halaman/laporan/grafik_tenaga_kerja.php');
+                    elseif (($_GET['sub_page'] ?? '') == 'pencapaian_petugas')
+                        include_once('halaman/laporan/pencapaian_petugas.php');
                 }
             } else include_once('halaman/dashboard/dashboard.php');
             ?>
