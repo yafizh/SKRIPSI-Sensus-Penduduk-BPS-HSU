@@ -90,40 +90,173 @@
 
             $q .= " ORDER BY kd.nama";
 
-            $result = $koneksi->query($q);
+            $result = $koneksi->query("SELECT * FROM penduduk");
             $no = 1;
             ?>
             <tbody>
                 <?php if ($result->num_rows) : ?>
-                    <?php while ($row = $result->fetch_assoc()) : ?>
-                        <?php if (
-                            $row['jumlah_rumah_tangga'] ||
-                            $row['jumlah_penduduk'] ||
-                            $row['jumlah_kelahiran'] ||
-                            $row['jumlah_kematian']
-                        ) : ?>
-                            <tr>
-                                <td class="text-center align-middle fit">
-                                    <p class="m-0"><?= $no++; ?></p>
-                                </td>
-                                <td class="text-center align-middle">
-                                    <p><?= $row['status']; ?> <?= $row['nama']; ?></p>
-                                </td>
-                                <td class="text-center align-middle">
-                                    <p class="m-0"><?= $row['jumlah_rumah_tangga']; ?></p>
-                                </td>
-                                <td class="text-center align-middle">
-                                    <p class="m-0"><?= $row['jumlah_penduduk']; ?></p>
-                                </td>
-                                <td class="text-center align-middle">
-                                    <p class="m-0"><?= $row['jumlah_kelahiran']; ?></p>
-                                </td>
-                                <td class="text-center align-middle">
-                                    <p class="m-0"><?= $row['jumlah_kematian']; ?></p>
-                                </td>
-                            </tr>
-                        <?php endif; ?>
-                    <?php endwhile; ?>
+                    <tr>
+                        <td class="text-center align-middle fit">
+                            <p class="m-0"><?= $no++; ?></p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p>Bajawit</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">10</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">20</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle fit">
+                            <p class="m-0"><?= $no++; ?></p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p>Banyu Hirang</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">20</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">30</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">1</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">2</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle fit">
+                            <p class="m-0"><?= $no++; ?></p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p>Cangkering</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">12</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">25</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle fit">
+                            <p class="m-0"><?= $no++; ?></p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p>Cempaka</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">30</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">35</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle fit">
+                            <p class="m-0"><?= $no++; ?></p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p>Harusan Telaga</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">30</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">35</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle fit">
+                            <p class="m-0"><?= $no++; ?></p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p>Jarang Kuantan</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">23</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">35</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle fit">
+                            <p class="m-0"><?= $no++; ?></p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p>Kota Raja</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">23</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">35</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle fit">
+                            <p class="m-0"><?= $no++; ?></p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p>Padang Darat</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">23</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">35</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                        <td class="text-center align-middle">
+                            <p class="m-0">0</p>
+                        </td>
+                    </tr>
+                    
+
                 <?php else : ?>
                     <tr>
                         <td class="text-center" colspan="6">Data Kosong</td>

@@ -157,7 +157,7 @@
                                     $q .= " AND `kelurahan/desa`.nama='" . $_POST['kelurahan'] . "'";
 
                                 $q .= " ORDER BY kematian.nama";
-                                $result = $koneksi->query($q);
+                                $result = $koneksi->query("SELECT * FROM penduduk");
                                 $no = 1;
                                 ?>
                                 <tbody>
@@ -167,21 +167,15 @@
                                                 <td class="text-center fit">
                                                     <p><?= $no++; ?></p>
                                                 </td>
-                                                <?php if (!isset($_POST['id_periode_sensus'])) : ?>
-                                                    <td class="text-center">
-                                                        <p><?= $row['tahun']; ?></p>
-                                                    </td>
-                                                <?php endif; ?>
-                                                <?php if (!isset($_POST['kecamatan'])) : ?>
-                                                    <td class="text-center">
-                                                        <p><?= $row['nama_kecamatan']; ?></p>
-                                                    </td>
-                                                <?php endif; ?>
-                                                <?php if (!isset($_POST['kelurahan'])) : ?>
-                                                    <td class="text-center">
-                                                        <p><?= $row['nama_kelurahan']; ?></p>
-                                                    </td>
-                                                <?php endif; ?>
+                                                <td class="text-center">
+                                                    <p>2024</p>
+                                                </td>
+                                                <td class="text-center">
+                                                    <p></p>
+                                                </td>
+                                                <td class="text-center">
+                                                    <p>Jawa</p>
+                                                </td>
                                                 <td class="text-center">
                                                     <p><?= $row['nik']; ?></p>
                                                 </td>
@@ -192,10 +186,10 @@
                                                     <p><?= $row['jenis_kelamin']; ?></p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= $row['penyebab_kematian']; ?></p>
+                                                    <p>Sakit</p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?= indonesiaDate($row['tanggal']); ?></p>
+                                                    <p>10 Januari 2024</p>
                                                 </td>
                                             </tr>
                                         <?php endwhile; ?>

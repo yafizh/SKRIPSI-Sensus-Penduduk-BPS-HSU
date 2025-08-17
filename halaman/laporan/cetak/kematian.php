@@ -13,34 +13,7 @@
     <?php include_once('header.php'); ?>
     <?php
     $q = "
-        SELECT 
-            kecamatan.nama nama_kecamatan,
-            kematian.*, 
-            DATE(kematian.tanggal_waktu) tanggal,
-            penyebab_kematian.nama penyebab_kematian,
-            `kelurahan/desa`.nama nama_kelurahan,
-            `kelurahan/desa`.status status_kelurahan,
-            periode_sensus.tahun
-        FROM 
-            kematian 
-        INNER JOIN 
-            penyebab_kematian 
-        ON 
-            penyebab_kematian.id=kematian.id_penyebab_kematian 
-        INNER JOIN 
-            `kelurahan/desa` 
-        ON 
-            `kelurahan/desa`.id=`kematian`.`id_kelurahan/desa`  
-        INNER JOIN 
-            kecamatan 
-        ON 
-            kecamatan.id=`kelurahan/desa`.id_kecamatan 
-        INNER JOIN 
-            periode_sensus 
-        ON 
-            periode_sensus.id=kematian.id_periode_sensus 
-        WHERE 
-            1=1 
+    SELECT * FROM penduduk
         ";
 
     if (isset($_GET['id_periode_sensus']))
@@ -52,7 +25,7 @@
     if (isset($_GET['kelurahan']))
         $q .= " AND `kelurahan/desa`.nama='" . $_GET['kelurahan'] . "'";
 
-    $q .= " ORDER BY kematian.nama";
+    // $q .= " ORDER BY kematian.nama";
     $result = $koneksi->query($q);
     ?>
     <h4 class="text-center my-3">Laporan Kematian</h4>
@@ -132,38 +105,32 @@
                 <?php if ($result->num_rows) : ?>
                     <?php while ($row = $result->fetch_assoc()) : ?>
                         <tr>
-                            <td class="text-center align-middle fit">
-                                <p class="m-0"><?= $no++; ?></p>
+                            <td class="text-center fit">
+                                <p><?= $no++; ?></p>
                             </td>
-                            <?php if (!isset($_GET['id_periode_sensus'])) : ?>
-                                <td class="text-center">
-                                    <p class="m-0"><?= $row['tahun']; ?></p>
-                                </td>
-                            <?php endif; ?>
-                            <?php if (!isset($_GET['kecamatan'])) : ?>
-                                <td class="text-center">
-                                    <p class="m-0"><?= $row['nama_kecamatan']; ?></p>
-                                </td>
-                            <?php endif; ?>
-                            <?php if (!isset($_GET['kelurahan'])) : ?>
-                                <td class="text-center">
-                                    <p class="m-0"><?= $row['nama_kelurahan']; ?></p>
-                                </td>
-                            <?php endif; ?>
-                            <td class="text-center align-middle">
-                                <p class="m-0"><?= $row['nik']; ?></p>
+                            <td class="text-center">
+                                <p>2024</p>
                             </td>
-                            <td class="align-middle">
-                                <p class="m-0"><?= $row['nama']; ?></p>
+                            <td class="text-center">
+                                <p>Amuntai Selatan</p>
                             </td>
-                            <td class="text-center align-middle">
-                                <p class="m-0"><?= $row['jenis_kelamin']; ?></p>
+                            <td class="text-center">
+                                <p>Jawa</p>
                             </td>
-                            <td class="text-center align-middle">
-                                <p class="m-0"><?= $row['penyebab_kematian']; ?></p>
+                            <td class="text-center">
+                                <p><?= $row['nik']; ?></p>
                             </td>
-                            <td class="text-center align-middle">
-                                <p class="m-0"><?= indonesiaDate($row['tanggal']); ?></p>
+                            <td>
+                                <p><?= $row['nama']; ?></p>
+                            </td>
+                            <td class="text-center">
+                                <p><?= $row['jenis_kelamin']; ?></p>
+                            </td>
+                            <td class="text-center">
+                                <p>Sakit</p>
+                            </td>
+                            <td class="text-center">
+                                <p>10 Januari 2024</p>
                             </td>
                         </tr>
                     <?php endwhile; ?>
